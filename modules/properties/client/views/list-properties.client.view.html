@@ -1,0 +1,120 @@
+<!-- <section>
+  <div class="page-header">
+    <h1>Properties1</h1>
+  </div>
+
+
+  <div class="list-group">
+    <a ng-repeat="property in vm.properties"
+       ui-sref="properties.view({ propertyId: property._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="property.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="property.user" ng-bind="property.user.displayName"></span>
+        <span ng-if="!property.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="property.address"></h4>
+    </a>
+  </div>
+
+
+  <div class="alert alert-warning text-center" ng-if="vm.properties.$resolved && !vm.properties.length">
+    No Properties yet, why don't you <a ui-sref="properties.create">create one</a>?
+  </div>
+</section> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section>
+  <div class="page-header">
+    <h1>Properties</h1>
+  </div>
+ 
+
+<md-toolbar class="md-table-toolbar md-default">
+  <div class="md-toolbar-tools">
+    <span>Nutrition</span>
+  </div>
+</md-toolbar>
+
+<!-- exact table from live demo -->
+       <md-table-container>
+          <table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}" ng-model="selected" md-progress="promise">
+            <thead ng-if="!options.decapitate" md-head md-order="query.order" md-on-reorder="logOrder">
+              <tr md-row>
+                <th md-column md-order-by="address"><span>Address</span></th>
+                <th md-column md-order-by="type"><span>Type</span></th>
+                <th md-column md-numeric md-order-by="calories.value" md-desc><span>County</span></th>
+                <th md-column md-numeric md-order-by="fat.value"><span>Phone no</span></th>
+                <th md-column md-numeric md-order-by="carbs.value"><span>Agent</span></th>
+                <th md-column md-numeric md-order-by="protein.value"><span>Email</span></th>
+                <th md-column md-numeric md-order-by="sodium.value" hide-gt-xs show-gt-md><span>Sodium (mg)</span></th>
+                <th md-column md-numeric md-order-by="calcium.value" hide-gt-xs show-gt-lg><span>Calcium (%)</span></th>
+                <th md-column md-numeric md-order-by="iron.value" hide-gt-xs show-gt-lg><span>Iron (%)</span></th>
+                <th md-column md-order-by="comment">
+                  <md-icon>comments</md-icon>
+                  <span>Comments</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody md-body>
+              <tr md-row md-select="property" md-on-select="logItem" md-auto-select="options.autoSelect" ng-disabled="dessert.calories.value > 400" ng-repeat="property in properties | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                <td md-cell>{{property.address}}</td>
+                <td md-cell>
+                  <md-select ng-model="dessert.type" placeholder="Other">
+                    <md-option ng-value="type" ng-repeat="type in getTypes()">{{type}}</md-option>
+                  </md-select>
+                </td>
+                
+                 <td md-cell>{{property.county}}</td>
+                 <td md-cell>{{property.phone_no}}</td>
+                 <td md-cell>{{property.agentName}}</td>
+                 <td md-cell>{{property.email_address}}</td>
+                 <td md-cell hide-gt-xs show-gt-md>{{property.listprice}}</td>
+                 <td md-cell hide-gt-xs show-gt-lg>{{property.listPrice}}%</td>
+                                
+                <td md-cell hide-gt-xs show-gt-md>{{dessert.sodium.value}}</td>
+                <td md-cell hide-gt-xs show-gt-lg>{{dessert.calcium.value}}%</td>
+                <td md-cell hide-gt-xs show-gt-lg>{{dessert.iron.value}}%</td>
+                <td md-cell ng-click="editComment($event, dessert)" ng-class="{'md-placeholder': !dessert.comment}">
+                  {{dessert.comment || 'Add a comment'}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+
+        <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{desserts.count}}" md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
+      </md-card>
+    </md-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
