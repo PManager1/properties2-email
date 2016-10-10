@@ -1,29 +1,4 @@
-<!-- <section>
-  <div class="page-header">
-    <h1>Properties1</h1>
-  </div>
 
-
-  <div class="list-group">
-    <a ng-repeat="property in vm.properties"
-       ui-sref="properties.view({ propertyId: property._id })"
-       class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="property.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="property.user" ng-bind="property.user.displayName"></span>
-        <span ng-if="!property.user">Deleted User</span>
-      </small>
-      <h4 class="list-group-item-heading" ng-bind="property.address"></h4>
-    </a>
-  </div>
-
-
-  <div class="alert alert-warning text-center" ng-if="vm.properties.$resolved && !vm.properties.length">
-    No Properties yet, why don't you <a ui-sref="properties.create">create one</a>?
-  </div>
-</section> -->
     
     <md-content laout="column" flex ng-controller="PropertiesListController">
     <md-toolbar class="md-whiteframe-1dp">
@@ -52,7 +27,7 @@
         
         <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
           <div class="md-toolbar-tools">
-            <span>Nutrition</span>
+            <span>make your selection</span>
                  
             <div flex>
             </div>
@@ -72,14 +47,23 @@
         </md-toolbar>
 
 
+
+<!-- these properties selected -->
+
+       <md-toolbar class="md-table-toolbar alternate" ng-show="options.rowSelection && selected.length">
+          <div class="md-toolbar-tools">
+            <span>{{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected</span>
+        
+                <md-button class="md-icon-button" ng-click="sendEmail()">
+                          <i class="material-icons">email</i>
+                 </md-button>
+
+          </div>
+        </md-toolbar>
 <!-- upto here -->
 
 
 <section>
-  <div class="page-header">
-    <h1>Properties</h1>
-  </div>
- 
 
 <md-toolbar class="md-table-toolbar md-default">
   <div class="md-toolbar-tools">

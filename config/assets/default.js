@@ -7,7 +7,7 @@ module.exports = {
         'public/lib/bootstrap/dist/css/bootstrap.css',
         'public/lib/bootstrap/dist/css/bootstrap-theme.css',
         'public/lib/angular-material/angular-material.min.css',
-        'public/lib/Material+Icons.css',
+        'public/lib/Material-Icons.css',
         // 'public/lib/angular-material-icons/angular-material-icons.css',        
         'public/lib/angular-material-data-table/dist/md-data-table.min.css'       
       ],
