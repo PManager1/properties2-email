@@ -5,104 +5,13 @@
   <div class="col-md-12">
     <form name="vm.form.propertyForm" class="form-horizontal" ng-submit="vm.save(vm.form.propertyForm.$valid)" novalidate>
       <fieldset>
-        
         <div class="form-group" show-errors>
-          <label class="control-label" for="name">Property Address</label>
-          <input name="name" type="text" ng-model="vm.property.address" id="name" class="form-control" placeholder="Name" required>
+          <label class="control-label" for="name">Name</label>
+          <input name="name" type="text" ng-model="vm.property.name" id="name" class="form-control" placeholder="Name" required>
           <div ng-messages="vm.form.propertyForm.name.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Property name is required.</p>
           </div>
         </div>
-
-
-        <div class="form-group" show-errors>
-          <label class="control-label" for="name">City</label>
-          <input name="name" type="text" ng-model="vm.property.city" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.propertyForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Property City is required.</p>
-          </div>
-        </div>
-
-
-
-<!--         <div class="form-group" show-errors>
-          <label class="control-label" for="name">Phone no</label>
-          <input name="name" type="text" ng-model="vm.property.phone" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.propertyForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Property Phone is required.</p>
-          </div>
-        </div> -->
-
-
-        <div class="form-group" show-errors>
-          <label class="control-label" for="name">Contact name</label>
-          <input name="name" type="text" ng-model="vm.property.contact_name" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.propertyForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Property contact_name is required.</p>
-          </div>
-        </div>
-
-
-       <div class="form-group" show-errors>
-          <label class="control-label" for="name">phone</label>
-          <input name="name" type="text" ng-model="vm.property.phone" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.propertyForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Property phone is required.</p>
-          </div>
-        </div>
-
-
-
-       <div class="form-group" show-errors>
-          <label class="control-label" for="name">listPrice</label>
-          <input name="name" type="text" ng-model="vm.property.listPrice" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.propertyForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Property listPrice is required.</p>
-          </div>
-        </div>
-
-
-       <div class="form-group" show-errors>
-          <label class="control-label" for="name">offerPrice</label>
-          <input name="name" type="text" ng-model="vm.property.offerPrice" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.propertyForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Property offerPrice is required.</p>
-          </div>
-        </div>
-
-
-
-
-        <div class="form-group" show-errors>
-          <label class="control-label" for="name">DOM</label>
-          <input name="name" type="text" ng-model="vm.property.DOM" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.propertyForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Property DOM is required.</p>
-          </div>
-        </div>       
-
-
-
-        <div class="form-group" show-errors>
-          <label class="control-label" for="name">dateAdded</label>
-          <input name="name" type="text" ng-model="vm.property.dateAdded" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.propertyForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Property DOM is required.</p>
-          </div>
-        </div> 
-
-
-
-        <div class="form-group" show-errors>
-          <label class="control-label" for="name">email</label>
-          <input name="name" type="text" ng-model="vm.property.email" id="name" class="form-control" placeholder="Button left right - if you click it it will send email and remain green.  If error - remain blue" required>
-          <div ng-messages="vm.form.propertyForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Property email is required.</p>
-          </div>
-        </div> 
-
-
-
         <div class="form-group">
           <button type="submit" class="btn btn-default">{{vm.property._id ? 'Update' : 'Create'}}</button>
         </div>

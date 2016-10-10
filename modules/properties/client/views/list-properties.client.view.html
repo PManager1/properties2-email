@@ -24,21 +24,55 @@
     No Properties yet, why don't you <a ui-sref="properties.create">create one</a>?
   </div>
 </section> -->
+    
+    <md-content laout="column" flex ng-controller="PropertiesListController">
+    <md-toolbar class="md-whiteframe-1dp">
+      <div class="md-toolbar-tools">
+        <div class="md-title">Liberty Trust Group</div>
+      </div>
+    </md-toolbar>
+
+    
+    <md-content laout="column" flex ng-controller="PropertiesListController">
+      
+      <md-card>
+        <div layout="row" layout-wrap class="checkboxes">
+          <md-checkbox ng-model="options.rowSelection">Row Selection</md-checkbox>
+          <md-checkbox ng-model="options.multiSelect">Multiple Selection</md-checkbox>
+          <md-checkbox ng-model="options.autoSelect">Auto Selection</md-checkbox>
+          <md-checkbox ng-model="options.decapitate">Decapitate</md-checkbox>
+          <md-checkbox ng-model="options.largeEditDialog">Lard Edit Dialogs</md-checkbox>
+          <md-checkbox ng-model="options.boundaryLinks">Pagination Boundary Links</md-checkbox>
+          <md-checkbox ng-model="options.limitSelect" ng-click="toggleLimitOptions()">Pagination Limit Select</md-checkbox>
+          <md-checkbox ng-model="options.pageSelect">Pagination Page Select</md-checkbox>
+        </div>
+      </md-card>
+      
+      <md-card>
+        
+        <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
+          <div class="md-toolbar-tools">
+            <span>Nutrition</span>
+                 
+            <div flex>
+            </div>
+
+            <md-button class="md-icon-button" ng-click="loadStuff()">
+              <md-icon>refresh</md-icon>
+            </md-button>
 
 
 
+          <md-button class="md-icon-button" ng-click="sendEmail()">
+          <i class="material-icons">email</i>
+            </md-button>
 
 
+          </div>
+        </md-toolbar>
 
 
-
-
-
-
-
-
-
-
+<!-- upto here -->
 
 
 <section>
