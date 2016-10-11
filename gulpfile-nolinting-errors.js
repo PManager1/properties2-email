@@ -62,7 +62,7 @@ gulp.task('watch', function () {
     gulp.watch(defaultAssets.server.gulpConfig, ['templatecache', 'jshint']);
     gulp.watch(defaultAssets.client.views, ['templatecache', 'jshint']).on('change', plugins.livereload.changed);
   } else {
-    gulp.watch(defaultAssets.server.gulpConfig, ['jshint']);
+    // gulp.watch(defaultAssets.server.gulpConfig, ['jshint']);
     gulp.watch(defaultAssets.client.views).on('change', plugins.livereload.changed);
   }
 });
@@ -80,37 +80,37 @@ gulp.task('csslint', function (done) {
 });
 
 // JS linting task
-gulp.task('jshint', function () {
-  var assets = _.union(
-    defaultAssets.server.gulpConfig,
-    defaultAssets.server.allJS,
-    defaultAssets.client.js,
-    testAssets.tests.server,
-    testAssets.tests.client,
-    testAssets.tests.e2e
-  );
+// gulp.task('jshint', function () {
+//   var assets = _.union(
+//     defaultAssets.server.gulpConfig,
+//     defaultAssets.server.allJS,
+//     defaultAssets.client.js,
+//     testAssets.tests.server,
+//     testAssets.tests.client,
+//     testAssets.tests.e2e
+//   );
 
-  return gulp.src(assets)
-    .pipe(plugins.jshint())
-    .pipe(plugins.jshint.reporter('default'))
-    .pipe(plugins.jshint.reporter('fail'));
-});
+//   return gulp.src(assets)
+//     .pipe(plugins.jshint())
+//     .pipe(plugins.jshint.reporter('default'))
+//     .pipe(plugins.jshint.reporter('fail'));
+// });
 
 // ESLint JS linting task
-gulp.task('eslint', function () {
-  var assets = _.union(
-    defaultAssets.server.gulpConfig,
-    defaultAssets.server.allJS,
-    defaultAssets.client.js,
-    testAssets.tests.server,
-    testAssets.tests.client,
-    testAssets.tests.e2e
-  );
+// gulp.task('eslint', function () {
+//   var assets = _.union(
+//     defaultAssets.server.gulpConfig,
+//     defaultAssets.server.allJS,
+//     defaultAssets.client.js,
+//     testAssets.tests.server,
+//     testAssets.tests.client,
+//     testAssets.tests.e2e
+//   );
 
-  return gulp.src(assets)
-    .pipe(plugins.eslint())
-    .pipe(plugins.eslint.format());
-});
+//   return gulp.src(assets)
+//     .pipe(plugins.eslint())
+//     .pipe(plugins.eslint.format());
+// });
 
 // JS minifying task
 gulp.task('uglify', function () {
@@ -258,9 +258,9 @@ gulp.task('protractor', ['webdriver_update'], function () {
 });
 
 // Lint CSS and JavaScript files.
-gulp.task('lint', function (done) {
-  runSequence('less', 'sass', ['csslint', 'eslint', 'jshint'], done);
-});
+// gulp.task('lint', function (done) {
+//   runSequence('less', 'sass', ['csslint', 'eslint', 'jshint'], done);
+// });
 
 // Lint project files and minify them into two production files.
 gulp.task('build', function (done) {
@@ -286,13 +286,14 @@ gulp.task('test:e2e', function (done) {
 
 // Run the project in development mode
 gulp.task('default', function (done) {
-  runSequence('env:dev', 'lint', ['nodemon', 'watch'], done);
+  runSequence('env:dev', ['nodemon', 'watch'], done);
+  // runSequence('env:dev', 'lint', ['nodemon', 'watch'], done);  
 });
 
 // Run the project in debug mode
-gulp.task('debug', function (done) {
-  runSequence('env:dev', 'lint', ['nodemon', 'watch'], done);
-});
+// gulp.task('debug', function (done) {
+//   runSequence('env:dev', 'lint', ['nodemon', 'watch'], done);
+// });
 
 // Run the project in production mode
 gulp.task('prod', function (done) {

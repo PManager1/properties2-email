@@ -8,6 +8,7 @@ var path = require('path'),
   Property = mongoose.model('Property'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
+  // colors = require('colors'); 
 
 /**
  * Create a Property
@@ -15,13 +16,16 @@ var path = require('path'),
 exports.create = function(req, res) {
   var property = new Property(req.body);
   property.user = req.user;
-
+console.log( '19 ----- inside the exports.create ',property ); 
+console.log( '20 ----- inside the property.res ',property.res ); 
   property.save(function(err) {
     if (err) {
+      console.log( ' 23- server/controller error =', err); 
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      console.log( ' 28-  server/controller no-error  res =', res);       
       res.jsonp(property);
     }
   });
@@ -81,6 +85,7 @@ exports.delete = function(req, res) {
  * List of Properties
  */
 exports.list = function(req, res) {
+  console.log( ' < - > calling  exports.list inside the  properties/server/controller/prop.server.controller < - >'); 
   Property.find().sort('-created').populate('user', 'displayName').exec(function(err, properties) {
     if (err) {
       return res.status(400).send({
