@@ -7,8 +7,53 @@ var path = require('path'),
   mongoose = require('mongoose'),
   Property = mongoose.model('Property'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
-  _ = require('lodash');
+  _ = require('lodash'),
+  nodemailer = require('nodemailer'),
+  config = require(path.resolve('./config/config')),
+  async = require('async'); 
+  
+var smtpTransport = nodemailer.createTransport(config.mailer.options);
+
   // colors = require('colors'); 
+
+
+
+/**
+ * sendEmailToSelectedProperties
+ */
+exports.sendEmailToSelectedProperties = function (emailHTML, user, done) {
+
+  console.log( ' inside the server  exports.sendEmailToSelectedProperties'); 
+
+      var mailOptions = {
+        to: 'jpca999@gmail.com',
+        from: 'jpca999@gmail.com',
+        subject: 'All Commission Yours |  Cash  offer attached for 810 SE 4TH CT',
+        html: emailHTML
+      };
+      smtpTransport.sendMail(mailOptions, function (err) {
+        if (!err) {
+          console.log( 'An email has been sent to the provided email with further instructions. '); 
+
+        } else {
+          console.log( 'EMAIL SENDING FAILURE ...'); 
+        }
+
+        done(err);
+      });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * Create a Property

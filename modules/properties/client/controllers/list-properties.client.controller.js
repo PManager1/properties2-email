@@ -8,9 +8,9 @@
 console.log( ' inside the list-properties-client-controller'); 
 
 
-  PropertiesListController.$inject = ['$scope','$rootScope' ,'$filter','PropertiesService'];
+  PropertiesListController.$inject = ['$scope','$rootScope','$http','$filter','PropertiesService'];
 
-  function PropertiesListController($scope,$rootScope, $filter, PropertiesService) {
+  function PropertiesListController($scope,$rootScope,$http, $filter, PropertiesService) {
     var vm = this;
 
     vm.properties = PropertiesService.query();
@@ -118,21 +118,29 @@ $scope.rowSelected;
 
 
     $rootScope.propertiesSelected = $scope.selected;
-
     console.log ( ' $rootScope.propertiesSelected  = ', $rootScope.propertiesSelected); 
-
 
   };
   
 
-
-
   $scope.sendEmail = function ($scope) {
     // body...
-
     console.log ( ' $rootScope.propertiesSelected  inside the sendEmail function = ', $rootScope.propertiesSelected); 
-
     var properties = $rootScope.propertiesSelected; 
+    
+   var data = ({
+    	contactName : "hoola", 
+    	contactEmail : "jpca999@gmail.com", 
+    	contactMsg : "some mofo bold message"
+    }); 
+
+    $http.post( '/sendEmailToSelectedProperties', data). 
+    	success( function (data,status,headers, config) {
+    		console.log( ' inside SUCCESS func of sendEmail');    		
+    	}). 
+    	error(function (data,status,headers,config) {
+    		console.log( ' inside error func of sendEmail');
+    	}); 
 }; 
 
 
