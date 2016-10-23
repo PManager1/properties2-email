@@ -5,12 +5,14 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
+  User = mongoose.model('User'),  
   Property = mongoose.model('Property'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash'),
   nodemailer = require('nodemailer'),
   config = require(path.resolve('./config/config')),
-  async = require('async'); 
+  async = require('async'),
+  crypto = require('crypto');  
   
 var smtpTransport = nodemailer.createTransport(config.mailer.options);
 
@@ -19,11 +21,27 @@ var smtpTransport = nodemailer.createTransport(config.mailer.options);
 
 
 /**
- * sendEmailToSelectedProperties
+ * sendEmailToSelectedProperties sendEmailToSelectedProperties
  */
-exports.sendEmailToSelectedProperties = function (emailHTML, user, done) {
+exports.ssendEmailToSelectedProperties = function (req, res) {
 
-  console.log( ' inside the server  exports.sendEmailToSelectedProperties'); 
+
+  console.log( ' inside the server  exports.sendEmailToSelectedProperties 27'); 
+  // console.log( ' I have user here ', user); 
+
+            var PathRenderer =   path.resolve('modules/users/server/templates/reset-password-email'); 
+                console.log( ' PathRenderer 65  = ', PathRenderer); 
+                console.log( ' ==================='); 
+
+  var arrSelectedProperties = req.body; 
+  console.log( ' arrSelectedProperties = ',  arrSelectedProperties); 
+
+
+    for ( var i = 0; i < arrSelectedProperties.length; i++) {
+      console.log('arrSelectedProperties.length ', arrSelectedProperties.length); 
+
+            arrSelectedProperties[i]
+
 
       var mailOptions = {
         to: 'jpca999@gmail.com',
@@ -31,7 +49,13 @@ exports.sendEmailToSelectedProperties = function (emailHTML, user, done) {
         subject: 'All Commission Yours |  Cash  offer attached for 810 SE 4TH CT',
         html: emailHTML
       };
-      smtpTransport.sendMail(mailOptions, function (err) {
+
+        
+      res.render(path.resolve('modules/users/server/templates/reset-password-email'), {
+        name:  arrSelectedProperties[i].agentName,
+        appName: arrSelectedProperties[i]._id,
+        url: arrSelectedProperties[i].phone_no
+      }, function (err, emailHTML) {
         if (!err) {
           console.log( 'An email has been sent to the provided email with further instructions. '); 
 
@@ -39,14 +63,126 @@ exports.sendEmailToSelectedProperties = function (emailHTML, user, done) {
           console.log( 'EMAIL SENDING FAILURE ...'); 
         }
 
-        done(err);
-      });
+      });                
+    }
+      // var mailOptions = {
+      //   to: 'jpca999@gmail.com',
+      //   from: 'jpca999@gmail.com',
+      //   subject: 'All Commission Yours |  Cash  offer attached for 810 SE 4TH CT',
+      //   html: emailHTML
+      // };
+      // smtpTransport.sendMail(mailOptions, function (err) {
+      //   if (!err) {
+      //     console.log( 'An email has been sent to the provided email with further instructions. '); 
+
+      //   } else {
+      //     console.log( 'EMAIL SENDING FAILURE ...'); 
+      //   }
+
+      //   done(err);
+      // });
     }
 
 
 
+exports.sendEmailToSelectedProperties = function (req, res, next) {
 
+  async.waterfall([
+    // Generate random token
+    function (done) {
+      crypto.randomBytes(20, function (err, buffer) {
+        var token = buffer.toString('hex');
 
+          console.log('just before calling  done(err, token) - token =  = ', token); 
+        done(err, token);
+      });
+    },
+
+/*    
+    // Lookup user by username
+    function (token, done) {
+        console.log('token in function (token, done) - token =  = ', token); 
+      if (req.body.username) {
+        User.findOne({
+          username: req.body.username.toLowerCase()
+        }, '-salt -password', function (err, user) {
+          if (!user) {
+            return res.status(400).send({
+              message: 'No account with that username has been found'
+            });
+          } else if (user.provider !== 'local') {
+            return res.status(400).send({
+              message: 'It seems like you signed up using your ' + user.provider + ' account'
+            });
+          } else {
+            // user.resetPasswordToken = token;
+            // user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+            // user.save(function (err) {
+            //   done(err, token, user);
+            // });
+          }
+        });
+      } else {
+        return res.status(400).send({
+          message: 'Username field must not be blank'
+        });
+      }
+    },
+
+*/
+
+    // function (token, user, done) {
+    function (token, done) {    
+
+      var httpTransport = 'http://';
+      if (config.secure && config.secure.ssl === true) {
+        httpTransport = 'https://';
+      }
+              var PathRenderer =   path.resolve('modules/users/server/templates/reset-password-email'); 
+                console.log( ' PathRenderer 65  = ', PathRenderer); 
+                console.log( ' ==================='); 
+
+      res.render(path.resolve('modules/users/server/templates/reset-password-email'), {
+        name: "user.displayName",
+        appName: "config.app.title",
+        url: "httpTransport + req.headers.host + '/api/auth/reset/' + token"
+      }, 
+      function (err, emailHTML) {
+      console.log( '=====================> 145 here the emailHTML =', emailHTML ); 
+        // done(err, emailHTML, user);
+        done(err, emailHTML);
+      });
+    },
+    // If valid email, send reset email using service
+    function (emailHTML, done) {
+      var mailOptions = {
+        // to: user.email,
+        to: "jp_ca@ymail.com",        
+        from: config.mailer.from,
+        subject: 'Password Reset',
+        html: emailHTML
+      };
+      smtpTransport.sendMail(mailOptions, function (err) {
+        if (!err) {
+          res.send({
+            message: 'An email has been sent to the provided email with further instructions.'
+          });
+        } else {
+          return res.status(400).send({
+            message: 'Failure sending email'
+          });
+        }
+
+        done(err);
+      });
+    }
+  ], function (err) {
+    if (err) {
+      return next(err);
+    }
+  });
+};
 
 
 

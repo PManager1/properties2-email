@@ -23,11 +23,14 @@ exports.forgot = function (req, res, next) {
     function (done) {
       crypto.randomBytes(20, function (err, buffer) {
         var token = buffer.toString('hex');
+
+          console.log('just before calling  done(err, token) - token =  = ', token); 
         done(err, token);
       });
     },
     // Lookup user by username
     function (token, done) {
+                    console.log('token in function (token, done) - token =  = ', token); 
       if (req.body.username) {
         User.findOne({
           username: req.body.username.toLowerCase()
@@ -61,11 +64,17 @@ exports.forgot = function (req, res, next) {
       if (config.secure && config.secure.ssl === true) {
         httpTransport = 'https://';
       }
+              var PathRenderer =   path.resolve('modules/users/server/templates/reset-password-email'); 
+                console.log( ' PathRenderer 65  = ', PathRenderer); 
+                console.log( ' ==================='); 
+
       res.render(path.resolve('modules/users/server/templates/reset-password-email'), {
         name: user.displayName,
         appName: config.app.title,
         url: httpTransport + req.headers.host + '/api/auth/reset/' + token
-      }, function (err, emailHTML) {
+      }, 
+      function (err, emailHTML) {
+      console.log( '=====================> 74 here the emailHTML =', emailHTML ); 
         done(err, emailHTML, user);
       });
     },
@@ -98,6 +107,23 @@ exports.forgot = function (req, res, next) {
   });
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * Reset password GET from email token
  */
@@ -124,7 +150,7 @@ exports.reset = function (req, res, next) {
   var passwordDetails = req.body;
   var message = null;
 
-  async.waterfall([
+  async.waterfall([   //ending at 203
 
     function (done) {
       User.findOne({
@@ -132,7 +158,8 @@ exports.reset = function (req, res, next) {
         resetPasswordExpires: {
           $gt: Date.now()
         }
-      }, function (err, user) {
+      }, 
+      function (err, user) {
         if (!err && user) {
           if (passwordDetails.newPassword === passwordDetails.verifyPassword) {
             user.password = passwordDetails.newPassword;
@@ -171,14 +198,17 @@ exports.reset = function (req, res, next) {
           });
         }
       });
-    },
+    },   //ending   function (done) 133
+
     function (user, done) {
       res.render('modules/users/server/templates/reset-password-confirm-email', {
         name: user.displayName,
         appName: config.app.title
-      }, function (err, emailHTML) {
+      }, 
+      function (err, emailHTML) {
+        console.log( '=====================> 187 here the emailHTML =', emailHTML ); 
         done(err, emailHTML, user);
-      });
+      });      
     },
     // If valid email, send reset email using service
     function (emailHTML, user, done) {
@@ -193,7 +223,8 @@ exports.reset = function (req, res, next) {
         done(err, 'done');
       });
     }
-  ], function (err) {
+  ],   //ending the waterAsync
+  function (err) {    
     if (err) {
       return next(err);
     }

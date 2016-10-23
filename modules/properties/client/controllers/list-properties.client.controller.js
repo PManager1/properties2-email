@@ -128,17 +128,20 @@ $scope.rowSelected;
     console.log ( ' $rootScope.propertiesSelected  inside the sendEmail function = ', $rootScope.propertiesSelected); 
     var properties = $rootScope.propertiesSelected; 
     
+    var arrSelectedProperties=$rootScope.propertiesSelected; 
+
    var data = ({
     	contactName : "hoola", 
     	contactEmail : "jpca999@gmail.com", 
-    	contactMsg : "some mofo bold message"
+    	contactMsg : "some mofo bold message", 
+    	AgentName: ""
     }); 
 
-    $http.post( '/sendEmailToSelectedProperties', data). 
-    	success( function (data,status,headers, config) {
+    $http.post( '/sendEmailToSelectedProperties', arrSelectedProperties). 
+    	success( function (arrSelectedProperties,status,headers, config) {
     		console.log( ' inside SUCCESS func of sendEmail');    		
     	}). 
-    	error(function (data,status,headers,config) {
+    	error(function (arrSelectedProperties,status,headers,config) {
     		console.log( ' inside error func of sendEmail');
     	}); 
 }; 
