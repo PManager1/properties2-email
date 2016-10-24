@@ -1,4 +1,36 @@
 
+
+    <div ng-controller="MyController" layout-fill="" layout="column" class="inset toastdemoBasicUsage" ng-cloak="" paddi="" ng-app="MyApp">
+    <p>
+    Toast can be dismissed with a swipe, a timer, or a button.<br>
+    </p>
+
+
+    <div layout="row" layout-align="space-around">
+      <div style="width:50px"></div>
+      <md-button class="md-raised" ng-click="showSimpleToast()">
+        Show Simple
+      </md-button>
+      <md-button class="md-raised" ng-click="showActionToast()">
+        Show With Action
+      </md-button>
+      <div style="width:50px"></div>
+    </div>
+
+    <div layout="row" id="toastBounds">
+
+      <div>
+        <p><b>Toast Position: "{{getToastPosition()}}"</b></p>
+        <md-checkbox ng-repeat="(name, isSelected) in toastPosition" ng-model="toastPosition[name]">
+          {{name}}
+        </md-checkbox>
+      </div>
+   </div>
+</div>
+
+
+
+
     
     <md-content laout="column" flex ng-controller="PropertiesListController">
     <md-toolbar class="md-whiteframe-1dp">
