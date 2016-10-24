@@ -144,38 +144,16 @@ $scope.rowSelected;
     last = angular.extend({},current);
   }
 
-  $scope.showSimpleToast = function() {
+  $scope.showSimpleToast = function(e) {
     var pinTo = $scope.getToastPosition();
 
     $mdToast.show(
       $mdToast.simple()
-        .textContent('Simple Toast!')
+        .textContent(e)
         .position(pinTo )
         .hideDelay(3000)
     );
   };
-
-  $scope.showActionToast = function() {
-    var pinTo = $scope.getToastPosition();
-    var toast = $mdToast.simple()
-      .textContent('Marked as read')
-      .action('DISMISS')
-      .highlightAction(true)
-      .highlightClass('md-warn')// Accent is used by default, this just demonstrates the usage.
-      .position(pinTo);
-
-    $mdToast.show(toast).then(function(response) {
-      if ( response == 'ok' ) {
-        alert('You clicked the \'DISMISS\' action.');
-      }
-    });
-  };
-
-
-
-
-
-
 
 
 
@@ -224,9 +202,6 @@ $scope.rowSelected;
 
 
 
-
-
-
   $scope.toggleLimitOptions = function () {
     $scope.limitOptions = $scope.limitOptions ? undefined : [5, 10, 15];
   };
@@ -242,29 +217,13 @@ $scope.rowSelected;
   }
   
   $scope.logItem = function (item) {
-    // console.log(item.name, 'was selected');
-    console.log(item, 'only item was selected'); 
-
-    console.log('inside logItem function  & $mdToast  = ', $mdToast); 
-
-    console.log( 'in logItem  $scope = ', $scope);
-  
-    $scope.showActionToast(); 
-
     $rootScope.propertiesSelected = $scope.selected;
     console.log ( ' $rootScope.propertiesSelected  = ', $rootScope.propertiesSelected); 
-
+    $scope.showSimpleToast("Item selected"); 
   };
   
 
-  $scope.sendEmail = function ($scope, $mdToast) {
-    // body...
-
-    console.log( ' sendEmail called  $mdToast = ',$mdToast); 
-
-    console.log('$mdToast  = ', $mdToast); 
-
-    console.log ( ' $rootScope.propertiesSelected  inside the sendEmail function = ', $rootScope.propertiesSelected); 
+  $scope.sendEmail = function () {
     var properties = $rootScope.propertiesSelected; 
     
     var arrSelectedProperties=$rootScope.propertiesSelected; 
@@ -279,6 +238,7 @@ $scope.rowSelected;
     $http.post( '/sendEmailToSelectedProperties', arrSelectedProperties). 
     	success( function (arrSelectedProperties,status,headers, config) {
     		console.log( ' inside SUCCESS func of sendEmail');    		
+        $scope.showSimpleToast("Email sent.");
     	}). 
     	error(function (arrSelectedProperties,status,headers,config) {
     		console.log( ' inside error func of sendEmail');
