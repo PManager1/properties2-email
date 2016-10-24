@@ -4,9 +4,117 @@
   angular
     .module('properties')
 
-    .controller('MyController', function($scope, $mdToast) {
+    .controller('PropertiesListController', function($scope, $mdToast) {
+  console.log( ' loading MyController  ========== for mdToast', $mdToast); 
+
+  // var last = {
+  //     bottom: false,
+  //     top: true,
+  //     left: false,
+  //     right: true
+  //   };
+
+  // $scope.toastPosition = angular.extend({},last);
+
+  // $scope.getToastPosition = function() {
+  //   sanitizePosition();
+
+  //   return Object.keys($scope.toastPosition)
+  //     .filter(function(pos) { return $scope.toastPosition[pos]; })
+  //     .join(' ');
+  // };
+
+  // function sanitizePosition() {
+  //   var current = $scope.toastPosition;
+
+  //   if ( current.bottom && last.top ) current.top = false;
+  //   if ( current.top && last.bottom ) current.bottom = false;
+  //   if ( current.right && last.left ) current.left = false;
+  //   if ( current.left && last.right ) current.right = false;
+
+  //   last = angular.extend({},current);
+  // }
+
+  // $scope.showSimpleToast = function() {
+  //   var pinTo = $scope.getToastPosition();
+
+  //   $mdToast.show(
+  //     $mdToast.simple()
+  //       .textContent('Simple Toast!')
+  //       .position(pinTo )
+  //       .hideDelay(3000)
+  //   );
+  // };
+
+  // $scope.showActionToast = function() {
+  //   var pinTo = $scope.getToastPosition();
+  //   var toast = $mdToast.simple()
+  //     .textContent('Marked as read')
+  //     .action('DISMISS')
+  //     .highlightAction(true)
+  //     .highlightClass('md-warn')// Accent is used by default, this just demonstrates the usage.
+  //     .position(pinTo);
+
+  //   $mdToast.show(toast).then(function(response) {
+  //     if ( response == 'ok' ) {
+  //       alert('You clicked the \'DISMISS\' action.');
+  //     }
+  //   });
+  // };
+
+})
+
+
+
+    .controller('PropertiesListController', PropertiesListController);
+
+console.log( ' inside the list-properties-client-controller'); 
+
+
+  PropertiesListController.$inject = ['$scope','$rootScope','$http','$filter','PropertiesService','$mdToast'];
+
+  function PropertiesListController($scope,$rootScope,$http, $filter, PropertiesService,$mdToast) {
+
+
+  console.log( ' loading PropertiesListController  ========== for mdToast =>', $mdToast); 
+
+    var vm = this;
+
+    vm.properties = PropertiesService.query();
+    $scope.properties = vm.properties; 
+
+    console.log(' vm.properties =',vm.properties); 
+
+
+  $scope.selected = [];
   
-  console.log( ' $mdToast = ', $mdToast); 
+  $rootScope.propertiesSelected = []; 
+
+
+  $scope.limitOptions = [5, 10, 15];
+  
+  $scope.options = {
+    rowSelection: true,
+    multiSelect: true,
+    autoSelect: true,
+    decapitate: false,
+    largeEditDialog: false,
+    boundaryLinks: false,
+    limitSelect: true,
+    pageSelect: true
+  };
+  
+  $scope.query = {
+    order: 'address',
+    limit: 5,
+    page: 1
+  };
+
+$scope.rowSelected; 
+  
+
+// **********
+
 
   var last = {
       bottom: false,
@@ -63,55 +171,15 @@
     });
   };
 
-})
 
 
 
-    .controller('PropertiesListController', PropertiesListController);
-
-console.log( ' inside the list-properties-client-controller'); 
-
-  PropertiesListController.$inject = ['$scope','$rootScope','$http','$filter','PropertiesService','$mdToast'];
-
-  function PropertiesListController($scope,$rootScope,$http, $filter, PropertiesService,$mdToast) {
-    var vm = this;
-
-    vm.properties = PropertiesService.query();
 
 
 
-    $scope.properties = vm.properties; 
-
-    console.log(' vm.properties =',vm.properties); 
 
 
-  $scope.selected = [];
-  
-  $rootScope.propertiesSelected = []; 
-
-
-  $scope.limitOptions = [5, 10, 15];
-  
-  $scope.options = {
-    rowSelection: true,
-    multiSelect: true,
-    autoSelect: true,
-    decapitate: false,
-    largeEditDialog: false,
-    boundaryLinks: false,
-    limitSelect: true,
-    pageSelect: true
-  };
-  
-  $scope.query = {
-    order: 'address',
-    limit: 5,
-    page: 1
-  };
-
-$scope.rowSelected; 
-  
-
+// ************
   
   $scope.editComment = function (event, dessert) {
     event.stopPropagation(); // in case autoselect is enabled
@@ -173,13 +241,15 @@ $scope.rowSelected;
     }, 2000);
   }
   
-  $scope.logItem = function (item, $mdToast) {
+  $scope.logItem = function (item) {
     // console.log(item.name, 'was selected');
     console.log(item, 'only item was selected'); 
 
-    console.log('$mdToast  = ', $mdToast); 
-    // console.log( 'in logItem  $scope = ', $scope);
+    console.log('inside logItem function  & $mdToast  = ', $mdToast); 
 
+    console.log( 'in logItem  $scope = ', $scope);
+  
+    $scope.showActionToast(); 
 
     $rootScope.propertiesSelected = $scope.selected;
     console.log ( ' $rootScope.propertiesSelected  = ', $rootScope.propertiesSelected); 
