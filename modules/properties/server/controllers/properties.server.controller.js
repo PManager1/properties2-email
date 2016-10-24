@@ -92,8 +92,6 @@ exports.sendEmailToSelectedProperties = function (req, res, next) {
     function (done) {
       crypto.randomBytes(20, function (err, buffer) {
         var token = buffer.toString('hex');
-
-          console.log('just before calling  done(err, token) - token =  = ', token); 
         done(err, token);
       });
     },
@@ -139,17 +137,17 @@ exports.sendEmailToSelectedProperties = function (req, res, next) {
       if (config.secure && config.secure.ssl === true) {
         httpTransport = 'https://';
       }
-              var PathRenderer =   path.resolve('modules/users/server/templates/reset-password-email'); 
+              var PathRenderer =   path.resolve('modules/properties/server/templates/reset-password-email'); 
                 console.log( ' PathRenderer 65  = ', PathRenderer); 
                 console.log( ' ==================='); 
 
-      res.render(path.resolve('modules/users/server/templates/reset-password-email'), {
+      res.render(path.resolve('modules/properties/server/templates/reset-password-email'), {
         name: "user.displayName",
         appName: "config.app.title",
         url: "httpTransport + req.headers.host + '/api/auth/reset/' + token"
       }, 
       function (err, emailHTML) {
-      console.log( '=====================> 145 here the emailHTML =', emailHTML ); 
+      // console.log( '=====================> 145 here the emailHTML =', emailHTML ); 
         // done(err, emailHTML, user);
         done(err, emailHTML);
       });
@@ -163,10 +161,13 @@ exports.sendEmailToSelectedProperties = function (req, res, next) {
         subject: 'Password Reset',
         html: emailHTML
       };
+      // var poo = "poo"; 
       smtpTransport.sendMail(mailOptions, function (err) {
         if (!err) {
           res.send({
             message: 'An email has been sent to the provided email with further instructions.'
+            // console.log( ' an email has been sent to  - mailOptions.to',mailOptions.to ); 
+            // console.log( ' poo value = ', poo); 
           });
         } else {
           return res.status(400).send({
