@@ -7,10 +7,9 @@
 
 console.log( ' inside the list-properties-client-controller'); 
 
+  PropertiesListController.$inject = ['$scope','$rootScope','$http','$filter','PropertiesService','$mdToast'];
 
-  PropertiesListController.$inject = ['$scope','$rootScope','$http','$filter','PropertiesService'];
-
-  function PropertiesListController($scope,$rootScope,$http, $filter, PropertiesService) {
+  function PropertiesListController($scope,$rootScope,$http, $filter, PropertiesService,$mdToast) {
     var vm = this;
 
     vm.properties = PropertiesService.query();
@@ -110,10 +109,11 @@ $scope.rowSelected;
     }, 2000);
   }
   
-  $scope.logItem = function (item) {
+  $scope.logItem = function (item, $mdToast) {
     // console.log(item.name, 'was selected');
     console.log(item, 'only item was selected'); 
 
+    console.log('$mdToast  = ', $mdToast); 
     // console.log( 'in logItem  $scope = ', $scope);
 
 
@@ -123,8 +123,13 @@ $scope.rowSelected;
   };
   
 
-  $scope.sendEmail = function ($scope) {
+  $scope.sendEmail = function ($scope, $mdToast) {
     // body...
+
+    console.log( ' sendEmail called  $mdToast = ',$mdToast); 
+
+    console.log('$mdToast  = ', $mdToast); 
+
     console.log ( ' $rootScope.propertiesSelected  inside the sendEmail function = ', $rootScope.propertiesSelected); 
     var properties = $rootScope.propertiesSelected; 
     
