@@ -23,6 +23,8 @@ var smtpTransport = nodemailer.createTransport(config.mailer.options);
 /**
  * sendEmailToSelectedProperties sendEmailToSelectedProperties
  */
+
+ /*
 exports.ssendEmailToSelectedProperties = function (req, res) {
 
 
@@ -43,14 +45,6 @@ exports.ssendEmailToSelectedProperties = function (req, res) {
             arrSelectedProperties[i]
 
 
-      var mailOptions = {
-        to: 'jpca999@gmail.com',
-        from: 'jpca999@gmail.com',
-        subject: 'All Commission Yours |  Cash  offer attached for 810 SE 4TH CT',
-        html: emailHTML
-      };
-
-        
       res.render(path.resolve('modules/users/server/templates/reset-password-email'), {
         name:  arrSelectedProperties[i].agentName,
         appName: arrSelectedProperties[i]._id,
@@ -83,7 +77,7 @@ exports.ssendEmailToSelectedProperties = function (req, res) {
       // });
     }
 
-
+*/
 
 exports.sendEmailToSelectedProperties = function (req, res, next) {
 
@@ -141,8 +135,26 @@ exports.sendEmailToSelectedProperties = function (req, res, next) {
                 console.log( ' PathRenderer 65  = ', PathRenderer); 
                 console.log( ' ==================='); 
 
+
+    var value  = req.body; 
+    var str1 = "Follow up for  ";
+    var str2 = value.address;
+    var agent = str1.concat(str2);
+    console.log( "143- - req.body = " + req.body);
+
+
+    var value  = req.body; 
+    var str1 = "Follow up for  ";
+    var str2 = value.address;
+    var propertyAddress = str1.concat(str2);
+    console.log( "property Address = " + res);
+
+
+
       res.render(path.resolve('modules/properties/server/templates/reset-password-email'), {
-        name: "user.displayName",
+        name: value.agentName,
+        propertyAddress: propertyAddress,
+        // jay here. 
         appName: "config.app.title",
         url: "httpTransport + req.headers.host + '/api/auth/reset/' + token"
       }, 
@@ -154,18 +166,29 @@ exports.sendEmailToSelectedProperties = function (req, res, next) {
     },
     // If valid email, send reset email using service
     function (emailHTML, done) {
+
+    var value  = req.body; 
+    var str1 = "Follow up for  ";
+    var str2 = value.address;
+    var propertyAddress = str1.concat(str2);
+
+    console.log( "property Address = " + res);
+
+
       var mailOptions = {
         // to: user.email,
-        to: "jp_ca@ymail.com",        
+        to: value.email_address,        
         from: config.mailer.from,
-        subject: 'Password Reset',
+        subject: propertyAddress,
         html: emailHTML
       };
+      console.log( '159 ---> mailOptions =  ', mailOptions); 
       // var poo = "poo"; 
       smtpTransport.sendMail(mailOptions, function (err) {
         if (!err) {
           res.send({
-            message: 'An email has been sent to the provided email with further instructions.'
+            message: 'An email has been sent to the provided email with further instructions.', 
+            mailOptions: mailOptions
             // console.log( ' an email has been sent to  - mailOptions.to',mailOptions.to ); 
             // console.log( ' poo value = ', poo); 
           });

@@ -1,7 +1,7 @@
 [{
 	"address": "123 main st",
 	"county": "Santa Clara",
-	"city": "",
+	"city": "Deltona",
 	"phone_no": "000-234-0909",
 	"email_address": "jp_ca@ymail.com",
 	"listPrice": "60000",
@@ -15,11 +15,12 @@
 	"no_of_emails_sent": "count for array",	
 	"last_date_email_open":  ["23-3-2016", "24-3-2016"],
 	"no_of_emails_open": "Counter",
-	"user_logged_in": "Jay"	
+	"user_logged_in": "Jay", 
+	"comments": ""		
 }, {
 	"address": "421 Palm Beach",
 	"county": "Boward",
-	"city": "",
+	"city": "Fort Lauderdale",
 	"phone_no": "7823-234-0909",
 	"email_address": "jpca999@gmail.com",
 	"listPrice": "40000",
@@ -34,11 +35,12 @@
 	"no_of_emails_sent": "count for array",	
 	"last_date_email_open":  ["23-3-2016", "24-3-2016"],
 	"no_of_emails_open": "Counter",
-	"user_logged_in": "Jay"		
+	"user_logged_in": "Jay",
+	"comments": ""					
 }, {
 	"address": "539 Costral Reed",
 	"county": "Sunnyvale",
-	"city": "",
+	"city": "Pompano Beach",
 	"phone_no": "920-234-0909",
 	"email_address": "libertytrustgroup@gmail.com",
 	"listPrice": "34000",
@@ -53,5 +55,6 @@
 	"no_of_emails_sent": "count for array",	
 	"last_date_email_open":  ["23-3-2016", "24-3-2016"],
 	"no_of_emails_open": "Counter",
-	"user_logged_in": "Jay"		
+	"user_logged_in": "Jay",
+	"comments": ""					
 }]

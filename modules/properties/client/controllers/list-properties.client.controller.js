@@ -224,25 +224,47 @@ $scope.rowSelected;
   
 
   $scope.sendEmail = function () {
+
+    console.log( ' insdie the  $scope.sendEmail'); 
     var properties = $rootScope.propertiesSelected; 
     
     var arrSelectedProperties=$rootScope.propertiesSelected; 
 
-   var data = ({
-    	contactName : "hoola", 
-    	contactEmail : "jpca999@gmail.com", 
-    	contactMsg : "some mofo bold message", 
-    	AgentName: ""
+    angular.forEach(arrSelectedProperties, function(value) {
+      console.log( ' values = ', value); 
+
+    $http.post( '/sendEmailToSelectedProperties', value). 
+
+     success( function (value,status,headers, config) {
+        console.log(' value of value inside the success =',value); 
+       console.log( ' inside SUCCESS func of sendEmail'); 
+       var to = value.email_address; 
+       console.log( ' to  = ', to);
+
+        $scope.showSimpleToast("Email sent to");
+     }). 
+     error(function (value,status,headers,config) {
+       var to = value.email_address; 
+       console.log( ' to  = ', to); 
+
+       console.log( ' inside error func of sendEmail');
+        $scope.showSimpleToast("Email FAIL.");      
+     }); 
+
+
+
     }); 
 
-    $http.post( '/sendEmailToSelectedProperties', arrSelectedProperties). 
-    	success( function (arrSelectedProperties,status,headers, config) {
-    		console.log( ' inside SUCCESS func of sendEmail');    		
-        $scope.showSimpleToast("Email sent.");
-    	}). 
-    	error(function (arrSelectedProperties,status,headers,config) {
-    		console.log( ' inside error func of sendEmail');
-    	}); 
+
+
+    // $http.post( '/sendEmailToSelectedProperties', arrSelectedProperties). 
+    // 	success( function (arrSelectedProperties,status,headers, config) {
+    // 		console.log( ' inside SUCCESS func of sendEmail');    		
+    //     $scope.showSimpleToast("Email sent.");
+    // 	}). 
+    // 	error(function (arrSelectedProperties,status,headers,config) {
+    // 		console.log( ' inside error func of sendEmail');
+    // 	}); 
 }; 
 
 
