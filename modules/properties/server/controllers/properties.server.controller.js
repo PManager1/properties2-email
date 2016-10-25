@@ -139,16 +139,11 @@ exports.sendEmailToSelectedProperties = function (req, res, next) {
     var value  = req.body; 
     var str1 = "Follow up for  ";
     var str2 = value.address;
-    var agent = str1.concat(str2);
-    console.log( "143- - req.body = " + req.body);
+    var strCity = value.City; 
 
+    var propertyAddress = str1 + str2 + ', ' + strCity;
 
-    var value  = req.body; 
-    var str1 = "Follow up for  ";
-    var str2 = value.address;
-    var propertyAddress = str1.concat(str2);
-    console.log( "property Address = " + res);
-
+    console.log( "154---property Address = " + propertyAddress);
 
 
       res.render(path.resolve('modules/properties/server/templates/reset-password-email'), {
@@ -159,24 +154,36 @@ exports.sendEmailToSelectedProperties = function (req, res, next) {
         url: "httpTransport + req.headers.host + '/api/auth/reset/' + token"
       }, 
       function (err, emailHTML) {
-      // console.log( '=====================> 145 here the emailHTML =', emailHTML ); 
-        // done(err, emailHTML, user);
         done(err, emailHTML);
       });
     },
     // If valid email, send reset email using service
     function (emailHTML, done) {
 
+  //   var value  = req.body; 
+  //   var str1 = "Follow up for  ";
+  //   var str2 = value.address;
+  //   var str3 = value.city;    
+  //   var propertyAddress = str1.concat(str2).concat(str3);
+
+  // console.log( "169 - --- -  - property Address = " + propertyAddress);
+
+
     var value  = req.body; 
+    console.log(  '173- value = ', value); 
     var str1 = "Follow up for  ";
     var str2 = value.address;
-    var propertyAddress = str1.concat(str2);
+    var strCity = value.city; 
 
-    console.log( "property Address = " + res);
+    var propertyAddress = str1 + str2 + ', ' + strCity;
+
+    console.log( "179---property Address = " + propertyAddress);
 
 
+
+
+    
       var mailOptions = {
-        // to: user.email,
         to: value.email_address,        
         from: config.mailer.from,
         subject: propertyAddress,

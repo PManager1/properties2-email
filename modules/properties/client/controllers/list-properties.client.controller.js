@@ -238,10 +238,8 @@ $scope.rowSelected;
      success( function (value,status,headers, config) {
         console.log(' value of value inside the success =',value); 
        console.log( ' inside SUCCESS func of sendEmail'); 
-       var to = value.email_address; 
-       console.log( ' to  = ', to);
-
-        $scope.showSimpleToast("Email sent to");
+       var to = "Email sent to" + value.mailOptions.to; 
+        $scope.showSimpleToast(to);
      }). 
      error(function (value,status,headers,config) {
        var to = value.email_address; 
