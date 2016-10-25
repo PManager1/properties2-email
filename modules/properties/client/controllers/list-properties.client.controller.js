@@ -112,10 +112,7 @@ console.log( ' inside the list-properties-client-controller');
 
 $scope.rowSelected; 
   
-
 // **********
-
-
   var last = {
       bottom: false,
       top: true,
@@ -216,12 +213,35 @@ $scope.rowSelected;
     }, 2000);
   }
   
+
   $scope.logItem = function (item) {
     $rootScope.propertiesSelected = $scope.selected;
     console.log ( ' $rootScope.propertiesSelected  = ', $rootScope.propertiesSelected); 
     $scope.showSimpleToast("Item selected"); 
   };
   
+
+
+    // $scope.update = function (isValid) {
+    //   $scope.error = null;
+
+    //   if (!isValid) {
+    //     $scope.$broadcast('show-errors-check-validity', 'articleForm');
+    //     return false;
+    //   }
+
+    //   var article = $scope.article;
+
+    //   article.$update(function () {
+    //     $location.path('articles/' + article._id);
+    //   }, function (errorResponse) {
+    //     $scope.error = errorResponse.data.message;
+    //   });
+    // };
+
+
+
+
 
   $scope.sendEmail = function () {
 
@@ -240,6 +260,7 @@ $scope.rowSelected;
        console.log( ' inside SUCCESS func of sendEmail'); 
        var to = "Email sent to" + value.mailOptions.to; 
         $scope.showSimpleToast(to);
+        value
      }). 
      error(function (value,status,headers,config) {
        var to = value.email_address; 
@@ -248,21 +269,8 @@ $scope.rowSelected;
        console.log( ' inside error func of sendEmail');
         $scope.showSimpleToast("Email FAIL.");      
      }); 
-
-
-
     }); 
 
-
-
-    // $http.post( '/sendEmailToSelectedProperties', arrSelectedProperties). 
-    // 	success( function (arrSelectedProperties,status,headers, config) {
-    // 		console.log( ' inside SUCCESS func of sendEmail');    		
-    //     $scope.showSimpleToast("Email sent.");
-    // 	}). 
-    // 	error(function (arrSelectedProperties,status,headers,config) {
-    // 		console.log( ' inside error func of sendEmail');
-    // 	}); 
 }; 
 
 

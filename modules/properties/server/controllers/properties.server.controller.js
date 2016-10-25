@@ -179,9 +179,6 @@ exports.sendEmailToSelectedProperties = function (req, res, next) {
 
     console.log( "179---property Address = " + propertyAddress);
 
-
-
-
     
       var mailOptions = {
         to: value.email_address,        
@@ -196,8 +193,6 @@ exports.sendEmailToSelectedProperties = function (req, res, next) {
           res.send({
             message: 'An email has been sent to the provided email with further instructions.', 
             mailOptions: mailOptions
-            // console.log( ' an email has been sent to  - mailOptions.to',mailOptions.to ); 
-            // console.log( ' poo value = ', poo); 
           });
         } else {
           return res.status(400).send({
