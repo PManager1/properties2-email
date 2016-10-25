@@ -260,7 +260,7 @@ $scope.rowSelected;
        console.log( ' inside SUCCESS func of sendEmail'); 
        var to = "Email sent to" + value.mailOptions.to; 
         $scope.showSimpleToast(to);
-        value
+        // value
      }). 
      error(function (value,status,headers,config) {
        var to = value.email_address; 
