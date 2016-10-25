@@ -179,7 +179,6 @@ exports.sendEmailToSelectedProperties = function (req, res, next) {
 
     console.log( "179---property Address = " + propertyAddress);
 
-    
       var mailOptions = {
         to: value.email_address,        
         from: config.mailer.from,
@@ -314,7 +313,8 @@ exports.propertyByID = function(req, res, next, id) {
       message: 'Property is invalid'
     });
   }
-
+console.log('************ exports.propertyByID -> id = ', id); 
+// console.log('************ exports.property -> property = ', property); 
   Property.findById(id).populate('user', 'displayName').exec(function (err, property) {
     if (err) {
       return next(err);
