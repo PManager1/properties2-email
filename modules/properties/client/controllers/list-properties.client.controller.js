@@ -8,9 +8,9 @@
 console.log( ' inside the list-properties-client-controller'); 
 
 
-  PropertiesListController.$inject = ['$scope','$rootScope', '$location', '$http','$filter','PropertiesService','$mdToast'];
+  PropertiesListController.$inject = ['$scope','$rootScope', '$location', '$http','$filter','PropertiesService','$mdToast','moment'];
 
-  function PropertiesListController($scope, $rootScope, $location, $http, $filter, PropertiesService, $mdToast) {
+  function PropertiesListController($scope, $rootScope, $location, $http, $filter, PropertiesService, $mdToast, moment) {
 
 
   console.log( ' loading PropertiesListController  ========== for mdToast =>', $mdToast); 
@@ -198,11 +198,6 @@ $scope.data = {};
     $scope.update = function (value) {
       $scope.error = null;
 
-      // if (!isValid) {
-      //   $scope.$broadcast('show-errors-check-validity', 'articleForm');
-      //   return false;
-      // }
-
       $scope.property = value;
       $scope.property.data = 'some data';
 
@@ -213,18 +208,31 @@ $scope.data = {};
       });
 
 
-      // property.$update(function () {
-      //   $location.path('properties/' + property._id);
-      //   console.log( ' updating the value of the property'); 
-      // }, function (errorResponse) {
-      //   $scope.error = errorResponse.data.message;
-      // });
     };
 
 
 
 $scope.justCalled = function () {
     console.log( ' inside the  $scope.justCalled');   
+
+
+var nowMoment = moment();
+var nowMomentFormatted = nowMoment.format('YYYY-M-D');
+
+console.log( ' nowMomentFormatted =', nowMomentFormatted ); 
+
+
+// var next30days = Date.today().add(-30).days();
+
+// console.log( ' next30days =', next30days ); 
+
+moment().subtract(30, 'days'); // or...
+moment().add(-30, 'days');
+
+var add = moment().add(30, 'days').format('YYYY-M-D');
+
+console.log(  ' add = ', add); 
+
 
     // var properties = $rootScope.propertiesSelected; 
     
