@@ -60,6 +60,9 @@
             </md-button>
 
 
+
+
+
           </div>
         </md-toolbar>
 
@@ -74,6 +77,11 @@
                 <md-button class="md-icon-button" ng-click="sendEmail()">
                           <i class="material-icons">email</i>
                  </md-button>
+
+                <md-button class="md-icon-button" ng-click="justCalled()">
+                          <i class="material-icons">done</i>
+                 </md-button>
+
 
           </div>
         </md-toolbar>
@@ -112,9 +120,20 @@
               <tr md-row md-select="property" md-on-select="logItem" md-auto-select="options.autoSelect" ng-disabled="dessert.calories.value > 400" ng-repeat="property in properties | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
                 
                 <td md-cell>{{property.address}} {{property.city}}</td>
-                
+      
+
+          <td md-cell>
+               <!-- <md-checkbox ng-model="data.cb1" aria-label="Checkbox 3">
+                  Chk: {{ data.cb1 }} 
+                </md-checkbox> -->
+               <!--    <md-button class="md-icon-button" ng-click="justCalled()">
+                          <i class="material-icons">done</i>
+                 </md-button> -->
+          </td>
+
+
                 <td md-cell>
-                  <md-select ng-model="dessert.type" placeholder="Other">
+                  <md-select ng-model="dessert.type" placeholder="Other" md-on-select="logItemType" >
                     <md-option ng-value="type" ng-repeat="type in getTypes()">{{type}}</md-option>
                   </md-select>
                 </td>

@@ -1,7 +1,6 @@
 JUST KEEP DOING IT NO MATTER WHAT - YOU'LL BREAK THINGS AND THAT WILL GIVE YOU THE IDEAS  ON HOW TO IMPROVE IT AND YOOU'LL DO IT  VERY GOOD EVENTUALLY...
 
 
-
 c. Upon sending the email in Angular - save some changes in the database like 
 what time email was sent. 
 

@@ -49,7 +49,14 @@ console.log( ' inside the list-properties-client-controller');
 
 $scope.rowSelected; 
   
-// **********
+
+
+$scope.data = {};
+  $scope.data.cb1 = false;
+
+
+
+// ***** TOAST *****
   var last = {
       bottom: false,
       top: true,
@@ -89,7 +96,7 @@ $scope.rowSelected;
     );
   };
 
-
+// ***** TOAST *****
 
 // ************
   
@@ -139,10 +146,16 @@ $scope.rowSelected;
   $scope.toggleLimitOptions = function () {
     $scope.limitOptions = $scope.limitOptions ? undefined : [5, 10, 15];
   };
-  
+
   $scope.getTypes = function () {
     return ['Biweekly', 'Red-Priority', 'Orange', 'Grey'];
   };
+
+
+  $scope.logItemType = function (item) {
+    console.log( ' Prioerity  selected'); 
+  }; 
+  
   
   $scope.loadStuff = function () {
     $scope.promise = $timeout(function () {
@@ -210,6 +223,51 @@ $scope.rowSelected;
 
 
 
+$scope.justCalled = function () {
+    console.log( ' inside the  $scope.justCalled');   
+
+    // var properties = $rootScope.propertiesSelected; 
+    
+    // var arrSelectedProperties=$rootScope.propertiesSelected; 
+
+    // angular.forEach(arrSelectedProperties, function(value) {
+    //   console.log( ' values = ', value); 
+    //   var currentProperty = value; 
+
+    // $http.post( '/sendEmailToSelectedProperties', value). 
+
+    //  success( function (value,status,headers, config) {
+    //    console.log(' 230 - value of "value" inside the success =',value); 
+    //    var to = "Email sent to " + value.mailOptions.to; 
+    //     $scope.showSimpleToast(to);
+    //     // value.last_date_email_sent_on = "today"; 
+    //     // $scope.update(value); 
+    //     // debugger; 
+    //     console.log('just before updating.... value._id=', value);
+    //     console.log('just before updating.... currentProperty=', currentProperty);
+  
+    // currentProperty.county = "South LA";
+    // currentProperty.address = "111 - Urban estate";     
+    // PropertiesService.update({propertyId: currentProperty._id}, currentProperty);
+
+
+
+    // console.log('just after updating....'); 
+
+    //  }). 
+    //  error(function (value,status,headers,config) {
+    //    var to = value.email_address; 
+    //    console.log( ' to  = ', to); 
+
+    //    console.log( ' inside error func of sendEmail');
+    //     $scope.showSimpleToast("Email FAIL.");      
+    //  }); 
+    // }); 
+
+}; 
+
+
+
 
 
   $scope.sendEmail = function () {
@@ -226,7 +284,7 @@ $scope.rowSelected;
 
      success( function (value,status,headers, config) {
        console.log(' 230 - value of "value" inside the success =',value); 
-       var to = "Email sent to" + value.mailOptions.to; 
+       var to = "Email sent to " + value.mailOptions.to; 
         $scope.showSimpleToast(to);
         // value.last_date_email_sent_on = "today"; 
         // $scope.update(value); 
