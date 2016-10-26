@@ -150,11 +150,9 @@ $scope.rowSelected;
     }, 2000);
   }
   
-
   $scope.logItem = function (item) {
     $rootScope.propertiesSelected = $scope.selected;
     console.log ( ' $rootScope.propertiesSelected  = ', $rootScope.propertiesSelected); 
-    $scope.showSimpleToast("Item selected"); 
   };
   
 

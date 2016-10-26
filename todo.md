@@ -16,3 +16,4 @@ up th ecounter for how many emils were sent.
 
 
 
+3. search the list of properties. 

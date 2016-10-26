@@ -95,9 +95,9 @@
               <tr md-row>
                 <th md-column md-order-by="address"><span>Address</span></th>
                 <th md-column md-order-by="type"><span>Action</span></th>
-                <th md-column md-numeric md-order-by="calories.value" md-desc><span>County</span></th>
                 <th md-column md-numeric md-order-by="fat.value"><span>Phone no</span></th>
                 <th md-column md-numeric md-order-by="carbs.value"><span>Agent</span></th>
+                <th md-column md-numeric md-order-by="calories.value" md-desc><span>City</span></th>
                 <th md-column md-numeric md-order-by="protein.value"><span>Email</span></th>
                 <th md-column md-numeric md-order-by="sodium.value" hide-gt-xs show-gt-md><span>Sodium (mg)</span></th>
                 <th md-column md-numeric md-order-by="calcium.value" hide-gt-xs show-gt-lg><span>Calcium (%)</span></th>
@@ -110,16 +110,21 @@
             </thead>
             <tbody md-body>
               <tr md-row md-select="property" md-on-select="logItem" md-auto-select="options.autoSelect" ng-disabled="dessert.calories.value > 400" ng-repeat="property in properties | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
-                <td md-cell>{{property.address}}</td>
+                
+                <td md-cell>{{property.address}} {{property.city}}</td>
+                
                 <td md-cell>
                   <md-select ng-model="dessert.type" placeholder="Other">
                     <md-option ng-value="type" ng-repeat="type in getTypes()">{{type}}</md-option>
                   </md-select>
                 </td>
-                
-                 <td md-cell>{{property.county}}</td>
-                 <td md-cell>{{property.phone_no}}</td>
+              
+                 <!-- <td md-cell>{{property.phone_no}}</td> -->
+
+               <td md-cell>   <a href="tel:{{property.phone_no}}"> Call</a> </td>
+
                  <td md-cell>{{property.agentName}}</td>
+                 <td md-cell>{{property.city}}</td>              
                  <td md-cell>{{property.email_address}}</td>
                  <td md-cell hide-gt-xs show-gt-md>{{property.listprice}}</td>
                  <td md-cell hide-gt-xs show-gt-lg>{{property.listPrice}}%</td>
