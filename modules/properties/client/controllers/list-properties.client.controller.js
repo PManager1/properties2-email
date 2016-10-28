@@ -148,15 +148,60 @@ $scope.rowSelected;
   };
 
   $scope.getTypes = function () {
-    return ['Biweekly', 'Red-Priority', 'Orange', 'Grey'];
+    return ['Bi_weekly', 'Red-Priority', 'Orange', 'Grey'];
   };
 
-$scope.selectChanged = function (type) {
-  console.log( ' selectChanged triggered   & type = ', type); 
+
+
+$scope.selectChangedPriority = function (type) {
+  console.log( ' selectChanged triggered   & selected Priority = ', type);
+
+    var arrSelectedProperties = $rootScope.propertiesSelected;
+
+    console.log ( ' arrSelectedProperties  = ' ,  arrSelectedProperties); 
+    
+    angular.forEach(arrSelectedProperties, function(value) {
+        console.log(' values = ', value);
+        var currentProperty = value;
+
+      currentProperty.call_priority = type; 
+
+
+       var nowMoment = moment();
+       var nowMomentFormatted = nowMoment.format('YYYY-M-D');
+
+
+      currentProperty.last_date_call_was_made = nowMoment.format('YYYY-M-D');
+      console.log( ' BEFORE property update sent backend - >  currentProperty.call_priority', currentProperty); 
+
+      PropertiesService.update({propertyId: currentProperty._id}, currentProperty);
+      // debugger; 
+      console.log( ' property update sent backend'); 
+    });
+
 }
+
+
 
   $scope.logItemType = function (item) {
     console.log( ' Priority  selected'); 
+
+
+    var properties = $rootScope.propertiesSelected;  // delete this line.
+    var arrSelectedProperties = $rootScope.propertiesSelected;
+
+    angular.forEach(arrSelectedProperties, function(value) {
+        console.log(' values = ', value);
+        var currentProperty = value;
+
+      currentProperty.last_date_call_was_made = nowMoment.format('YYYY-M-D');
+      PropertiesService.update({propertyId: currentProperty._id}, currentProperty), function (error) {
+        console.log(' error found =' , error); 
+      };
+    });
+
+
+
   }; 
   
   
@@ -173,45 +218,10 @@ $scope.selectChanged = function (type) {
   
 
 
-/*
-    // Update existing Article
-    $scope.update = function (isValid) {
-      $scope.error = null;
-
-      if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'articleForm');
-
-        return false;
-      }
-
-      var article = $scope.article;
-
-      article.$update(function () {
-        $location.path('articles/' + article._id);
-      }, function (errorResponse) {
-        $scope.error = errorResponse.data.message;
-      });
-    };
-*/
 
 
 
 
-
-    $scope.update = function (value) {
-      $scope.error = null;
-
-      $scope.property = value;
-      $scope.property.data = 'some data';
-
-      property.$update(function () {
-        $location.path('properties/' + property._id);
-      }, function (errorResponse) {
-        $scope.error = errorResponse.data.message;
-      });
-
-
-    };
 
 
 
@@ -237,11 +247,10 @@ $scope.justCalled = function() {
         var currentProperty = value;
 
       currentProperty.last_date_call_was_made = nowMoment.format('YYYY-M-D');
-      PropertiesService.update({propertyId: currentProperty._id}, currentProperty);
-
-
+      PropertiesService.update({propertyId: currentProperty._id}, currentProperty), function (error) {
+        console.log(' error found =' , error); 
+      };
     });
-
 };
 
 
