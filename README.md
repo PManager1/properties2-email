@@ -1,6 +1,17 @@
 how to run ?
 
 
+step 1 
+docker build
+
+step 2 
+ docker-compose up
+
+
+
+
+ 
+
 
 [![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
 

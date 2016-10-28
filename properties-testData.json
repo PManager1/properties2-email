@@ -15,6 +15,7 @@
 	"no_of_emails_sent": "count for array",	
 	"last_date_email_open":  ["23-3-2016", "24-3-2016"],
 	"no_of_emails_open": "Counter",
+	"last_date_call_was_made": "",	
 	"user_logged_in": "Jay", 
 	"comments": ""		
 }, {
@@ -35,6 +36,7 @@
 	"no_of_emails_sent": "count for array",	
 	"last_date_email_open":  ["23-3-2016", "24-3-2016"],
 	"no_of_emails_open": "Counter",
+	"last_date_call_was_made": "",	
 	"user_logged_in": "Jay",
 	"comments": ""					
 }, {
@@ -55,6 +57,7 @@
 	"no_of_emails_sent": "count for array",	
 	"last_date_email_open":  ["23-3-2016", "24-3-2016"],
 	"no_of_emails_open": "Counter",
+	"last_date_call_was_made": "",	
 	"user_logged_in": "Jay",
 	"comments": ""					
 }]

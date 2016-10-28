@@ -61,8 +61,6 @@
 
 
 
-
-
           </div>
         </md-toolbar>
 
@@ -122,22 +120,24 @@
                 <td md-cell>{{property.address}} {{property.city}}</td>
       
 
-          <td md-cell>
-               <!-- <md-checkbox ng-model="data.cb1" aria-label="Checkbox 3">
-                  Chk: {{ data.cb1 }} 
-                </md-checkbox> -->
-               <!--    <md-button class="md-icon-button" ng-click="justCalled()">
+            <td md-cell>
+ 
+                <md-button class="md-icon-button" ng-click="justCalled()">
                           <i class="material-icons">done</i>
-                 </md-button> -->
-          </td>
+                 </md-button>  
+            </td>
 
 
-                <td md-cell>
-                  <md-select ng-model="dessert.type" placeholder="Other" md-on-select="logItemType" >
-                    <md-option ng-value="type" ng-repeat="type in getTypes()">{{type}}</md-option>
-                  </md-select>
-                </td>
-              
+
+
+            <td md-cell>
+              <md-select  ng-change="selectChanged(dessert.type)"  ng-model="dessert.type" placeholder="Other" md-on-select="logItemType" ng-value="{{type}}" > 
+                
+                <md-option ng-value="type" ng-repeat="type in getTypes()">{{type}}</md-option>
+
+              </md-select>
+            </td>
+          
                  <!-- <td md-cell>{{property.phone_no}}</td> -->
 
                <td md-cell>   <a href="tel:{{property.phone_no}}"> Call</a> </td>

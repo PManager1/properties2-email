@@ -9,7 +9,8 @@ module.exports = {
         'public/lib/angular-material/angular-material.min.css',
         'public/lib/Material-Icons.css',
         // 'public/lib/angular-material-icons/angular-material-icons.css',        
-        'public/lib/angular-material-data-table/dist/md-data-table.min.css'       
+        'public/lib/angular-material-data-table/dist/md-data-table.min.css',
+        'public/lib/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2'               
       ],
       js: [
         'public/lib/angular/angular.js',

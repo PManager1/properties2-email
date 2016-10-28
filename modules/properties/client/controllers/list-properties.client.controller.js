@@ -51,8 +51,8 @@ $scope.rowSelected;
   
 
 
-$scope.data = {};
-  $scope.data.cb1 = false;
+// $scope.data = {};
+//   $scope.data.cb1 = true;
 
 
 
@@ -151,9 +151,12 @@ $scope.data = {};
     return ['Biweekly', 'Red-Priority', 'Orange', 'Grey'];
   };
 
+$scope.selectChanged = function (type) {
+  console.log( ' selectChanged triggered   & type = ', type); 
+}
 
   $scope.logItemType = function (item) {
-    console.log( ' Prioerity  selected'); 
+    console.log( ' Priority  selected'); 
   }; 
   
   
@@ -212,67 +215,35 @@ $scope.data = {};
 
 
 
-$scope.justCalled = function () {
-    console.log( ' inside the  $scope.justCalled');   
+$scope.justCalled = function() {
+    console.log(' inside the  $scope.justCalled');
+
+    var nowMoment = moment();
+    var nowMomentFormatted = nowMoment.format('YYYY-M-D');
+
+    console.log(' nowMomentFormatted =', nowMomentFormatted);
+
+    moment().subtract(30, 'days'); // or...
+    moment().add(-30, 'days');
+
+    var add = moment().add(30, 'days').format('YYYY-M-D');
+    console.log(' add = ', add);
+
+    var properties = $rootScope.propertiesSelected;
+    var arrSelectedProperties = $rootScope.propertiesSelected;
+
+    angular.forEach(arrSelectedProperties, function(value) {
+        console.log(' values = ', value);
+        var currentProperty = value;
+
+      currentProperty.last_date_call_was_made = nowMoment.format('YYYY-M-D');
+      PropertiesService.update({propertyId: currentProperty._id}, currentProperty);
 
 
-var nowMoment = moment();
-var nowMomentFormatted = nowMoment.format('YYYY-M-D');
+    });
 
-console.log( ' nowMomentFormatted =', nowMomentFormatted ); 
+};
 
-
-// var next30days = Date.today().add(-30).days();
-
-// console.log( ' next30days =', next30days ); 
-
-moment().subtract(30, 'days'); // or...
-moment().add(-30, 'days');
-
-var add = moment().add(30, 'days').format('YYYY-M-D');
-
-console.log(  ' add = ', add); 
-
-
-    // var properties = $rootScope.propertiesSelected; 
-    
-    // var arrSelectedProperties=$rootScope.propertiesSelected; 
-
-    // angular.forEach(arrSelectedProperties, function(value) {
-    //   console.log( ' values = ', value); 
-    //   var currentProperty = value; 
-
-    // $http.post( '/sendEmailToSelectedProperties', value). 
-
-    //  success( function (value,status,headers, config) {
-    //    console.log(' 230 - value of "value" inside the success =',value); 
-    //    var to = "Email sent to " + value.mailOptions.to; 
-    //     $scope.showSimpleToast(to);
-    //     // value.last_date_email_sent_on = "today"; 
-    //     // $scope.update(value); 
-    //     // debugger; 
-    //     console.log('just before updating.... value._id=', value);
-    //     console.log('just before updating.... currentProperty=', currentProperty);
-  
-    // currentProperty.county = "South LA";
-    // currentProperty.address = "111 - Urban estate";     
-    // PropertiesService.update({propertyId: currentProperty._id}, currentProperty);
-
-
-
-    // console.log('just after updating....'); 
-
-    //  }). 
-    //  error(function (value,status,headers,config) {
-    //    var to = value.email_address; 
-    //    console.log( ' to  = ', to); 
-
-    //    console.log( ' inside error func of sendEmail');
-    //     $scope.showSimpleToast("Email FAIL.");      
-    //  }); 
-    // }); 
-
-}; 
 
 
 
@@ -303,7 +274,6 @@ console.log(  ' add = ', add);
     currentProperty.county = "South LA";
     currentProperty.address = "111 - Urban estate";     
     PropertiesService.update({propertyId: currentProperty._id}, currentProperty);
-
 
 
     console.log('just after updating....'); 
