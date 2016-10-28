@@ -18,7 +18,7 @@
 	"last_date_call_was_made": "",	
 	"call_priority": "Bi_weekly",		
 	"user_logged_in": "Jay", 
-	"comments": ""		
+	"comments": "Nice property"		
 }, {
 	"address": "421 Palm Road",
 	"county": "Boward",
@@ -40,7 +40,7 @@
 	"last_date_call_was_made": "",
 	"call_priority": "Bi_weekly",			
 	"user_logged_in": "Jay",
-	"comments": ""					
+	"comments": "Awesome Agent, says he have more properties"					
 }, {
 	"address": "539 Costral Reed",
 	"county": "Sunnyvale",
@@ -62,5 +62,5 @@
 	"last_date_call_was_made": "",	
 	"call_priority": "Grey",		
 	"user_logged_in": "Jay",
-	"comments": ""					
+	"comments": "Agent has ton of similar properties."					
 }]

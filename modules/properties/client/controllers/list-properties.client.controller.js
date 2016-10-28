@@ -8,9 +8,9 @@
 console.log( ' inside the list-properties-client-controller'); 
 
 
-  PropertiesListController.$inject = ['$scope','$rootScope', '$location', '$http','$filter','PropertiesService','$mdToast','moment'];
+  PropertiesListController.$inject = ['$scope','$rootScope', '$location', '$http','$filter','PropertiesService','$mdToast','moment','$mdEditDialog'];
 
-  function PropertiesListController($scope, $rootScope, $location, $http, $filter, PropertiesService, $mdToast, moment) {
+  function PropertiesListController($scope, $rootScope, $location, $http, $filter, PropertiesService, $mdToast, moment,  $mdEditDialog) {
 
 
   console.log( ' loading PropertiesListController  ========== for mdToast =>', $mdToast); 
@@ -102,9 +102,13 @@ $scope.rowSelected;
   
   $scope.editComment = function (event, dessert) {
     event.stopPropagation(); // in case autoselect is enabled
+
+
+    var arrSelectedProperties = $rootScope.propertiesSelected;
+    console.log( ' inside editComments arrSelectedProperties =', arrSelectedProperties); 
     
     var editDialog = {
-      modelValue: dessert.comment,
+      modelValue: arrSelectedProperties.comment,
       placeholder: 'Add a comment',
       save: function (input) {
         if(input.$modelValue === 'Donald Trump') {
@@ -140,6 +144,10 @@ $scope.rowSelected;
     });
   };
   
+
+
+
+
 
 
 
@@ -204,7 +212,8 @@ $scope.selectChangedPriority = function (type) {
 
   }; 
   
-  
+
+  /* DELETE this func - if nobody is using it.  */
   $scope.loadStuff = function () {
     $scope.promise = $timeout(function () {
       // loading
