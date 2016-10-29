@@ -118,12 +118,12 @@ $scope.rowSelected;
         if(input.$modelValue === 'Bernie Sanders') {
           return dessert.comment = 'FEEL THE BERN!'
         }
-        dessert.comment = input.$modelValue;
+        arrSelectedProperties.comment = input.$modelValue;
       },
       targetEvent: event,
       title: 'Add a comment',
       validators: {
-        'md-maxlength': 30
+        'md-maxlength': 1000
       }
     };
     
@@ -149,8 +149,6 @@ $scope.rowSelected;
 
 
 
-
-
   $scope.toggleLimitOptions = function () {
     $scope.limitOptions = $scope.limitOptions ? undefined : [5, 10, 15];
   };
@@ -161,33 +159,39 @@ $scope.rowSelected;
 
 
 
-$scope.selectChangedPriority = function (type) {
-  console.log( ' selectChanged triggered   & selected Priority = ', type);
+$scope.selectChangedPriority = function(type) {
+    console.log(' 165 - selectChanged triggered   & selected Priority = ', type);
 
     var arrSelectedProperties = $rootScope.propertiesSelected;
 
-    console.log ( ' arrSelectedProperties  = ' ,  arrSelectedProperties); 
-    
-    angular.forEach(arrSelectedProperties, function(value) {
-        console.log(' values = ', value);
-        var currentProperty = value;
+    console.log('169 - arrSelectedProperties  = ', arrSelectedProperties);
 
-      currentProperty.call_priority = type; 
+    window.arrSelectedProperties = arrSelectedProperties; 
+
+    // angular.forEach(arrSelectedProperties, function(value) {
+
+    // console.log(' values = ', value);  [arrSelectedProperties.length-1]
+    var currentProperty = arrSelectedProperties[arrSelectedProperties.length-1];
+
+    currentProperty.call_priority = type;
 
 
-       var nowMoment = moment();
-       var nowMomentFormatted = nowMoment.format('YYYY-M-D');
+    var nowMoment = moment();
+    var nowMomentFormatted = nowMoment.format('YYYY-M-D');
+
+    console.log('  182- nowMomentFormatted =', nowMomentFormatted);
+
+    currentProperty.last_date_call_was_made = nowMoment.format('YYYY-M-D');
+    console.log(' BEFORE property update sent backend - >  currentProperty.call_priority', currentProperty);
 
 
-      currentProperty.last_date_call_was_made = nowMoment.format('YYYY-M-D');
-      console.log( ' BEFORE property update sent backend - >  currentProperty.call_priority', currentProperty); 
+    PropertiesService.update({ propertyId: currentProperty._id }, currentProperty);
 
-      PropertiesService.update({propertyId: currentProperty._id}, currentProperty);
-      // debugger; 
-      console.log( ' property update sent backend'); 
-    });
-
+    console.log(' property update sent backend');
+    // });
+    // });
 }
+
 
 
 

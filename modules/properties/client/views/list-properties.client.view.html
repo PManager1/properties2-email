@@ -148,9 +148,11 @@
                 <td md-cell hide-gt-xs show-gt-md>{{dessert.sodium.value}}</td>
                 <td md-cell hide-gt-xs show-gt-lg>{{dessert.calcium.value}}%</td>
                 <td md-cell hide-gt-xs show-gt-lg>{{dessert.iron.value}}%</td>
-                <td md-cell ng-click="editComment($event, dessert)" ng-class="{'md-placeholder': !dessert.comment}">
+                
+                <td md-cell aria-label="comment" ng-click="editComment($event, dessert)" ng-class="{'md-placeholder': !dessert.comment}">
                   {{dessert.comment || 'Add a comment'}}
                 </td>
+                
               </tr>
             </tbody>
           </table>
