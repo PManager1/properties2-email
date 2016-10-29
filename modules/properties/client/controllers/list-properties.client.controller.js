@@ -8,9 +8,9 @@
 console.log( ' inside the list-properties-client-controller'); 
 
 
-  PropertiesListController.$inject = ['$scope','$rootScope', '$location', '$http','$filter','PropertiesService','$mdToast','moment','$mdEditDialog'];
+  PropertiesListController.$inject = ['$scope','$rootScope', '$q', '$location', '$http','$filter','PropertiesService','$mdToast','moment','$mdEditDialog'];
 
-  function PropertiesListController($scope, $rootScope, $location, $http, $filter, PropertiesService, $mdToast, moment,  $mdEditDialog) {
+  function PropertiesListController($scope, $rootScope, $q, $location, $http, $filter, PropertiesService, $mdToast, moment,  $mdEditDialog) {
 
 
   console.log( ' loading PropertiesListController  ========== for mdToast =>', $mdToast); 
@@ -147,8 +147,6 @@ $scope.rowSelected;
 
 
 
-
-
   $scope.toggleLimitOptions = function () {
     $scope.limitOptions = $scope.limitOptions ? undefined : [5, 10, 15];
   };
@@ -156,6 +154,40 @@ $scope.rowSelected;
   $scope.getTypes = function () {
     return ['Bi_weekly', 'Red-Priority', 'Orange', 'Grey'];
   };
+
+
+  $scope.loadStuff = function () {
+    $scope.promise = $timeout(function () {
+      // loading
+    }, 2000);
+  }
+
+
+  /* DELETE this func - if nobody is using it.  */
+  $scope.loadStuff = function () {
+    $scope.promise = $timeout(function () {
+      // loading
+    }, 2000);
+  }
+  
+  $scope.logItem = function (item) {
+    $rootScope.propertiesSelected = $scope.selected;
+    console.log ( ' $rootScope.propertiesSelected  = ', $rootScope.propertiesSelected); 
+  };
+
+  
+  $scope.logOrder = function (order) {
+    console.log('order: ', order);
+  };
+  
+
+  $scope.logPagination = function (page, limit) {
+    console.log('page: ', page);
+    console.log('limit: ', limit);
+  }
+
+
+
 
 
 
@@ -217,17 +249,6 @@ $scope.selectChangedPriority = function(type) {
   }; 
   
 
-  /* DELETE this func - if nobody is using it.  */
-  $scope.loadStuff = function () {
-    $scope.promise = $timeout(function () {
-      // loading
-    }, 2000);
-  }
-  
-  $scope.logItem = function (item) {
-    $rootScope.propertiesSelected = $scope.selected;
-    console.log ( ' $rootScope.propertiesSelected  = ', $rootScope.propertiesSelected); 
-  };
   
 
 
@@ -315,13 +336,7 @@ $scope.justCalled = function() {
 
 
 
-  $scope.logOrder = function (order) {
-    console.log('order: ', order);
-  };
-  
-  $scope.logPagination = function (page, limit) {
-    console.log('page: ', page);
-    console.log('limit: ', limit);
-  }
+
+
       }
   }());
