@@ -66,11 +66,6 @@
                           <i class="material-icons">done</i>
                  </md-button>
 
-
-
-
-
-
           </div>
         </md-toolbar>
 <!-- upto here -->
@@ -107,50 +102,6 @@
 
     </md-sidenav>
 
-
-    <md-content flex="" layout-padding="">
-
-      <div layout="column" layout-align="top center">        
-        <div>
-          <md-button ng-click="toggleLeft()" class="md-primary" hide-gt-md="">
-            Toggle left
-          </md-button>
-        </div>
-
-        <div>
-          <md-button ng-click="toggleRight()" ng-hide="isOpenRight()" class="md-primary">
-            Toggle right
-          </md-button>
-        </div>
-      </div>
-
-      <div flex=""></div>
-
-    </md-content>
-    <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
-
-      <md-toolbar class="md-theme-light">
-        <h1 class="md-toolbar-tools">Sidenav Right</h1>
-      </md-toolbar>
-      <md-content ng-controller="RightCtrl" layout-padding="">
-        <form>
-          <md-input-container>
-            <label for="testInput">Test input</label>
-            <input type="text" id="testInput" ng-model="data" md-autofocus="">
-          </md-input-container>
-        </form>
-        <md-button ng-click="close()" class="md-primary">
-          Close Sidenav Right
-        </md-button>
-      </md-content>
-
-    </md-sidenav>
-
-  </section>
-
-</div>
-
-<!-- SIDE BAR ENDS  -->
 
 
 
@@ -212,16 +163,76 @@
                 <td md-cell aria-label="comment" ng-click="editComment($event, property)" ng-class="{'md-placeholder': !property.comments}">
                   {{property.comments || 'Add a comment'}}
                 </td>
-                
+
+       <td md-cell>
+        <i ng-click="toggleLeft()" class="material-icons">chevron_left</i>
+       </td>   
+
+       <td md-cell>
+        <i ng-click="toggleRight()" class="material-icons">chevron_right</i>
+       </td>   
               </tr>
             </tbody>
           </table>
         </md-table-container>
 
+
+
+<!-- exact table from live demo  ends -->
+
+
+
+<!--     <md-content flex="" layout-padding="">
+
+      <div layout="column" layout-align="top center">        
+        <div>
+          <md-button ng-click="toggleLeft()" class="md-primary" hide-gt-md="">
+            Toggle left
+          </md-button>
+        </div>
+
+        <div>
+          <md-button ng-click="toggleRight()" ng-hide="isOpenRight()" class="md-primary">
+            Toggle right
+          </md-button>
+        </div>
+      </div>
+
+      <div flex=""></div>
+
+    </md-content> -->
+    <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
+
+      <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">Sidenav Right</h1>
+      </md-toolbar>
+      <md-content ng-controller="RightCtrl" layout-padding="">
+        <form>
+          <md-input-container>
+            <label for="testInput">Comments</label>
+            <input type="text" id="testInput" ng-model="data" md-autofocus="">
+          </md-input-container>
+
+<!-- more form elements -->
+
+<!-- more form elements ends  -->
+        </form>
+        <md-button ng-click="close()" class="md-primary">
+          Close Sidenav Right
+        </md-button>
+      </md-content>
+
+    </md-sidenav>
+
+  </section>
+
+</div>
+
+<!-- SIDE BAR ENDS  -->
+
         <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{desserts.count}}" md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
       </md-card>
     </md-content>
-
 
 
 
