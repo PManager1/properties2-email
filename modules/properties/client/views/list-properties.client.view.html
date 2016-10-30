@@ -109,10 +109,13 @@
                 <th md-column md-numeric md-order-by="sodium.value" hide-gt-xs show-gt-md><span>Sodium (mg)</span></th>
                 <th md-column md-numeric md-order-by="calcium.value" hide-gt-xs show-gt-lg><span>Calcium (%)</span></th>
                 <th md-column md-numeric md-order-by="iron.value" hide-gt-xs show-gt-lg><span>Iron (%)</span></th>
+               
                 <th md-column md-order-by="comment">
                   <md-icon>comments</md-icon>
                   <span>Comments</span>
                 </th>
+
+
               </tr>
             </thead>
             <tbody md-body>
@@ -148,8 +151,15 @@
                 <td md-cell hide-gt-xs show-gt-md>{{dessert.sodium.value}}</td>
                 <td md-cell hide-gt-xs show-gt-lg>{{dessert.calcium.value}}%</td>
                 <td md-cell hide-gt-xs show-gt-lg>{{dessert.iron.value}}%</td>
+
+
+
+<md-button class="md-primary md-raised" ng-click="showPrompt($event)"  >
+      Prompt Dialog
+    </md-button>
+
                 
-                <td md-cell aria-label="comment" ng-click="editComment($event, property)" ng-class="{'md-placeholder': !property.comments}">
+                <td md-cell aria-label="comment" class="md-primary md-raised" ng-click=showPrompt($event)" ng-class="{'md-placeholder': !property.comments}">
                   {{property.comments || 'Add a comment'}}
                 </td>
                 

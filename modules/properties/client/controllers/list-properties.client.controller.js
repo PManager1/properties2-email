@@ -8,9 +8,9 @@
 console.log( ' inside the list-properties-client-controller'); 
 
 
-  PropertiesListController.$inject = ['$scope','$rootScope', '$q', '$location', '$http','$filter','PropertiesService','$mdToast','moment','$mdEditDialog'];
+  PropertiesListController.$inject = ['$scope','$rootScope', '$q', '$location', '$http','$filter','PropertiesService','$mdToast','moment','$mdEditDialog','$mdDialog'];
 
-  function PropertiesListController($scope, $rootScope, $q, $location, $http, $filter, PropertiesService, $mdToast, moment,  $mdEditDialog) {
+  function PropertiesListController($scope, $rootScope, $q, $location, $http, $filter, PropertiesService, $mdToast, moment,  $mdEditDialog, $mdDialog) {
 
 
   console.log( ' loading PropertiesListController  ========== for mdToast =>', $mdToast); 
@@ -96,10 +96,111 @@ $scope.rowSelected;
     );
   };
 
-// ***** TOAST *****
+// ***** TOAST ends here *****
 
 // ************
   
+     $scope.retter = [{
+          _id: '56e827ba0ec7a8d02bf7747d',
+          name: 'test',
+          info: 'testinfo',
+          type: 'kød',
+          active: true
+        },{
+          _id: '56e827ba0ec7a8d02bf77473',
+          name: 'test3',
+          info: 'testinfo3',
+          type: 'kød',
+          active: true
+        },{
+          _id: '56e827ba0ec7a8d02bf77474',
+          name: 'test4',
+          info: 'testinfo4',
+          type: 'salat',
+          active: false
+        }];
+  
+    $scope.types = ['kød','salat','kartofler'];
+    
+    $scope.tableRows = ['Navn:','Info:','Type:','Aktiv:','Slet:']
+
+    $scope.showPrompt = function(ev, ret, value) {
+      
+      var getValue = function(){
+      switch(value){
+        case 'Navn':
+        currentValue = ret.name;
+        break;
+        case 'Info':
+        currentValue = ret.info;
+        break;
+        case 'Type':
+        currentValue = ret.type;
+        break;
+      }
+      return currentValue;
+    };
+    var setValue = function(result){
+      switch(value){
+      case 'Navn':
+      ret.name = result;
+      break;
+      case 'Info':
+      ret.info = result;
+      break;
+      case 'Type':
+      ret.type = result;
+      break;
+    }
+  };
+  
+    var confirm = $mdDialog.prompt()
+    .title('Rediger ' + value)
+    .textContent('Indtast en ny værdi for: ' + value)
+    .placeholder(getValue())
+    .ariaLabel('Ny ' + value)
+    .targetEvent(ev)
+    .ok('Accepter')
+    .cancel('Annuller');
+    $mdDialog.show(confirm).then(function(result) {
+      setValue(result);
+    });
+    var currentValue;
+
+    //retService.update(ret);
+    //socket.syncUpdates('ret', $scope.retter);
+  };
+
+  
+
+
+
+
+
+    $scope.showPrompt = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog.prompt()
+      .title('What would you name your dog?')
+      .textContent('Bowser is a common name.')
+      .placeholder('Dog name')
+      .ariaLabel('Dog name')
+      .initialValue('Buddy')
+      .targetEvent(ev)
+      .ok('Okay!')
+      .cancel('I\'m a cat person');
+
+    $mdDialog.show(confirm).then(function(result) {
+      $scope.status = 'You decided to name your dog ' + result + '.';
+    }, function() {
+      $scope.status = 'You didn\'t name your dog.';
+    });
+  };
+
+
+
+
+
+
   $scope.editComment = function (event, dessert) {
     event.stopPropagation(); // in case autoselect is enabled
 
@@ -111,6 +212,7 @@ $scope.rowSelected;
       modelValue: arrSelectedProperties.comment,
       placeholder: 'Add a comment',
       save: function (input) {
+        console.log( '144-  insdie the save function '); 
         if(input.$modelValue === 'Donald Trump') {
           input.$invalid = true;
           return $q.reject();
@@ -144,6 +246,9 @@ $scope.rowSelected;
     });
   };
   
+
+
+
 
 
 
