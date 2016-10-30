@@ -109,17 +109,18 @@ $scope.rowSelected;
     
     var editDialog = {
       modelValue: arrSelectedProperties.comment,
-      placeholder: 'Add a comment',
-      save: function (input) {
-        if(input.$modelValue === 'Donald Trump') {
-          input.$invalid = true;
-          return $q.reject();
-        }
-        if(input.$modelValue === 'Bernie Sanders') {
-          return dessert.comment = 'FEEL THE BERN!'
-        }
-        arrSelectedProperties.comment = input.$modelValue;
-      },
+      placeholder: 'Add a comment..',
+      // save: function (input) {
+      //   if(input.$modelValue === 'Donald Trump') {
+      //     input.$invalid = true;
+      //     console.log( '116 -  calling the save function'); 
+      //     return $q.reject();
+      //   }
+      //   if(input.$modelValue === 'Bernie Sanders') {
+      //     return dessert.comment = 'FEEL THE BERN!'
+      //   }
+      //   arrSelectedProperties.comment = input.$modelValue;
+      // },
       targetEvent: event,
       title: 'Add a comment',
       validators: {
@@ -129,19 +130,19 @@ $scope.rowSelected;
     
     var promise;
     
-    if($scope.options.largeEditDialog) {
-      promise = $mdEditDialog.large(editDialog);
-    } else {
-      promise = $mdEditDialog.small(editDialog);
-    }
+    // if($scope.options.largeEditDialog) {
+    //   promise = $mdEditDialog.large(editDialog);
+    // } else {
+    //   promise = $mdEditDialog.small(editDialog);
+    // }
     
-    promise.then(function (ctrl) {
-      var input = ctrl.getInput();
+    // promise.then(function (ctrl) {
+    //   var input = ctrl.getInput();
       
-      input.$viewChangeListeners.push(function () {
-        input.$setValidity('test', input.$modelValue !== 'test');
-      });
-    });
+    //   input.$viewChangeListeners.push(function () {
+    //     input.$setValidity('test', input.$modelValue !== 'test');
+    //   });
+    // });
   };
   
 
@@ -155,12 +156,6 @@ $scope.rowSelected;
     return ['Bi_weekly', 'Red-Priority', 'Orange', 'Grey'];
   };
 
-
-  $scope.loadStuff = function () {
-    $scope.promise = $timeout(function () {
-      // loading
-    }, 2000);
-  }
 
 
   /* DELETE this func - if nobody is using it.  */
