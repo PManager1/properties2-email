@@ -4,10 +4,7 @@
   angular
     .module('properties')
 
-
-
 // SIDE BAR stuff BEGINS 
-
   .controller('SideNavCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.toggleLeft = buildDelayedToggler('left');
     $scope.toggleRight = buildToggler('right');
@@ -83,11 +80,6 @@
   })
 
 // SIDE BAR stuff ENDS 
-
-
-
-
-
 
 
 
