@@ -11,6 +11,7 @@
   .controller('SideNavCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.toggleLeft = buildDelayedToggler('left');
     $scope.toggleRight = buildToggler('right');
+
     $scope.isOpenRight = function(){
       return $mdSidenav('right').isOpen();
     };
@@ -58,6 +59,8 @@
           });
       }
     }
+
+
   })
   .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.close = function () {
@@ -91,7 +94,7 @@
 
     .controller('PropertiesListController', PropertiesListController);
 
-console.log( ' inside the list-properties-client-controller'); 
+console.log( ' inside the list-properties-client-controller');                                                                       
 
 
   PropertiesListController.$inject = ['$scope','$rootScope', '$q', '$location', '$http','$filter','PropertiesService','$mdToast','moment','$mdEditDialog','$timeout', '$mdSidenav', '$log'];
