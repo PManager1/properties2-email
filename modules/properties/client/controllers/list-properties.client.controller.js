@@ -4,11 +4,27 @@
   angular
     .module('properties')
 
-// SIDE BAR stuff BEGINS 
-  .controller('SideNavCtrl', function ($scope, $timeout, $mdSidenav, $log, shareDataService) {
-    $scope.toggleLeft = buildDelayedToggler('left');
-    $scope.toggleRight = buildToggler('right');
 
+
+
+// SIDE BAR stuff BEGINS 
+  .controller('SideNavCtrl', function ($scope, $rootScope, $timeout, $mdSidenav, $log, shareDataService) {
+    console.log ('9- SideNav Ctrl initiated'); 
+    $scope.toggleLeft = buildDelayedToggler('left');
+    $scope.toggleRight = buildToggler('right'); 
+
+
+
+$scope.lists = shareDataService.getList();
+
+// $scope.propertylists = shareDataService.getList();
+
+
+console.log ( '13 --- $rootScope.propertiesSelected = ', $rootScope.propertiesSelected); 
+
+$scope.property = $rootScope.propertiesSelected; 
+
+ console.log (   'shareDataService.getList();   =', shareDataService.getList()) ; 
 
 
 $scope.desserts = {
@@ -24,76 +40,6 @@ $scope.desserts = {
         "sodium": { "value": 87.0 },
         "calcium": { "value": 14.0 },
         "iron": { "value": 1.0 }
-      }, {
-        "name": "Ice cream sandwich",
-        "type": "Ice cream",
-        "calories": { "value": 237.0 },
-        "fat": { "value": 9.0 },
-        "carbs": { "value": 37.0 },
-        "protein": { "value": 4.3 },
-        "sodium": { "value": 129.0 },
-        "calcium": { "value": 8.0 },
-        "iron": { "value": 1.0 }
-      }, {
-        "name": "Eclair",
-        "type": "Pastry",
-        "calories": { "value":  262.0 },
-        "fat": { "value": 16.0 },
-        "carbs": { "value": 24.0 },
-        "protein": { "value":  6.0 },
-        "sodium": { "value": 337.0 },
-        "calcium": { "value":  6.0 },
-        "iron": { "value": 7.0 }
-      }, {
-        "name": "Cupcake",
-        "type": "Pastry",
-        "calories": { "value":  305.0 },
-        "fat": { "value": 3.7 },
-        "carbs": { "value": 67.0 },
-        "protein": { "value": 4.3 },
-        "sodium": { "value": 413.0 },
-        "calcium": { "value": 3.0 },
-        "iron": { "value": 8.0 }
-      }, {
-        "name": "Jelly bean",
-        "type": "Candy",
-        "calories": { "value":  375.0 },
-        "fat": { "value": 0.0 },
-        "carbs": { "value": 94.0 },
-        "protein": { "value": 0.0 },
-        "sodium": { "value": 50.0 },
-        "calcium": { "value": 0.0 },
-        "iron": { "value": 0.0 }
-      }, {
-        "name": "Lollipop",
-        "type": "Candy",
-        "calories": { "value": 392.0 },
-        "fat": { "value": 0.2 },
-        "carbs": { "value": 98.0 },
-        "protein": { "value": 0.0 },
-        "sodium": { "value": 38.0 },
-        "calcium": { "value": 0.0 },
-        "iron": { "value": 2.0 }
-      }, {
-        "name": "Honeycomb",
-        "type": "Other",
-        "calories": { "value": 408.0 },
-        "fat": { "value": 3.2 },
-        "carbs": { "value": 87.0 },
-        "protein": { "value": 6.5 },
-        "sodium": { "value": 562.0 },
-        "calcium": { "value": 0.0 },
-        "iron": { "value": 45.0 }
-      }, {
-        "name": "Donut",
-        "type": "Pastry",
-        "calories": { "value": 452.0 },
-        "fat": { "value": 25.0 },
-        "carbs": { "value": 51.0 },
-        "protein": { "value": 4.9 },
-        "sodium": { "value": 326.0 },
-        "calcium": { "value": 2.0 },
-        "iron": { "value": 22.0 }
       }, {
         "name": "KitKat",
         "type": "Candy",
@@ -136,30 +82,39 @@ $scope.desserts = {
      * report completion in console
      */
     function buildDelayedToggler(navID) {
+      
       return debounce(function() {
         // Component lookup should always be available since we are not using `ng-if`
         $mdSidenav(navID)
           .toggle()
           .then(function () {
+            console.log( '152 -  navID =  ' , navID); 
+            $log.debug("inside buildDelayedToggler is done");
             $log.debug("toggle " + navID + " is done");
           });
       }, 200);
     }
 
     function buildToggler(navID) {
+      
       return function() {
         // Component lookup should always be available since we are not using `ng-if`
         $mdSidenav(navID)
           .toggle()
           .then(function () {
+            $log.debug("inside buildToggler is done");            
             $log.debug("toggle " + navID + " is done");
           });
       }
     }
 
-
   })
+
+
+
+
   .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log, shareDataService) {
+    console.log( '112 - Left Ctrl initiated'); 
     $scope.close = function () {
       // Component lookup should always be available since we are not using `ng-if`
       $mdSidenav('left').close()
@@ -169,11 +124,20 @@ $scope.desserts = {
 
     };
   })
-  .controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log, shareDataService) {
 
+
+
+  .controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log, shareDataService) {
+      console.log( '127 - Right Ctrl initiated'); 
+
+  var currentProperty = shareDataService.lastonList(); 
+
+console.log ( ' 177-  currentProperty = ', currentProperty); 
+
+ 
 
 $scope.desserts = {
-    "count": 9,
+    "count": 19,
     "data": [
       {
         "name": "Frozen yogurt",
@@ -451,8 +415,15 @@ $scope.rowSelected;
     $rootScope.propertiesSelected = $scope.selected;
     console.log ( ' $rootScope.propertiesSelected  = ', $rootScope.propertiesSelected); 
 
-    shareDataService.popList(); 
-    shareDataService.addList($rootScope.propertiesSelected);
+
+  $scope.someData = $rootScope.propertiesSelected;  
+
+  shareDataService
+
+  shareDataService.addList($scope.someData);
+
+    // shareDataService.popList(); 
+    // shareDataService.addList($rootScope.propertiesSelected);
   };
 
   
