@@ -80,7 +80,7 @@
 
 <!-- SIDE BAR starts  -->
 
-  <div ng-controller="SideNavCtrl" layout="column" style="height:500px;" ng-cloak="" class="sidenavdemoBasicUsage" ng-app="MyApp">
+  <div ng-controller="SideNavCtrl" layout="column" style="height:500px;" ng-cloak="" class="sidenavdemoBasicUsage">
 
   <section layout="row" flex="">
 
@@ -208,13 +208,13 @@
       <md-content ng-controller="RightCtrl" layout-padding="">
         <form>
           <md-input-container>
-            <label for="testInput">Comments</label>
-            <input type="text" id="testInput" {{property.agentName}}  ng-model="data" md-autofocus="" value="some comment">
+            <label for="testInput">Commentside</label>
+            <input type="text" id="testInput" {{desserts.count}} md-autofocus="" value="some comment5">
           </md-input-container>
 
           <md-input-container>
             <label for="testInput">Phone no</label>
-            <input type="text" id="testInput" ng-model="data"  value="414-253-3423">
+            <input type="text" id="testInput" {{property.address}} value="{{desserts.count}}" >
           </md-input-container>
 
           <md-input-container>

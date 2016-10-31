@@ -4,6 +4,33 @@
 
   angular
     .module('properties')
+    .service('shareDataService', function() {
+
+                                              console.log( 'Hi from shareDataService'); 
+
+    var myList = [];
+
+    var addList = function(newObj) {
+        myList.push(newObj);
+                                               console.log( 'Added properteis inside the myList ', myList); 
+    }
+
+    var getList = function(){
+        return myList;
+    }
+
+    var popList = function(){
+        myList = [];
+        return myList;
+    }
+
+    return {
+        addList: addList,
+        getList: getList,
+        popList: popList
+    };
+})
+
     .factory('PropertiesService', PropertiesService);
 
   PropertiesService.$inject = ['$resource'];
@@ -18,3 +45,6 @@
     });
   }
 }());
+
+
+
