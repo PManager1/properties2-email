@@ -82,11 +82,11 @@
 
 <section>
 
-<md-toolbar class="md-table-toolbar md-default">
+<!-- <md-toolbar class="md-table-toolbar md-default">
   <div class="md-toolbar-tools">
-    <span>Nutrition</span>
+    <span>Nutrition2</span>
   </div>
-</md-toolbar>
+</md-toolbar> -->
 
 <!-- SIDE BAR starts  -->
 
@@ -171,7 +171,7 @@
                 <td md-cell hide-gt-xs show-gt-lg>{{dessert.iron.value}}%</td>
                 
                 <td md-cell aria-label="comment" ng-click="editComment($event, property)" ng-class="{'md-placeholder': !property.comments}">
-                  {{property.comments || 'Add a comment'}}
+                  {{property.comments || 'Add a comment' | limitTo: 15  }}
                 </td>
 
        <td md-cell>
@@ -226,7 +226,7 @@
         <form>
           <md-input-container>
             <label for="testInput">Commentside</label>
-            <input type="text" id="testInput" md-autofocus="" value="{{obj.comments}}">
+            <input type="text" id="testInput" md-autofocus="" value="{{obj.comments | limitTo: 5}}">
           </md-input-container>
 
           <md-input-container>
