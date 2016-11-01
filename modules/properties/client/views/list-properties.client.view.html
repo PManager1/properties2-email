@@ -5,7 +5,7 @@
     <md-content laout="column" flex ng-controller="PropertiesListController">
     <md-toolbar class="md-whiteframe-1dp">
       <div class="md-toolbar-tools">
-        <div class="md-title">Liberty Trust Group2</div>
+        <div class="md-title">Liberty Trust Group</div>
       </div>
     </md-toolbar>
 
@@ -82,11 +82,23 @@
 
 <section>
 
-<!-- <md-toolbar class="md-table-toolbar md-default">
-  <div class="md-toolbar-tools">
-    <span>Nutrition2</span>
-  </div>
-</md-toolbar> -->
+
+
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-8">
+        <input ng-model="query[queryBy]" />
+    </div>
+    <div class="col-xs-6 col-md-4">
+        <select ng-model="queryBy">
+            <option value="$">$</option>
+            <option value="name">NAME</option>
+            <option value="company">COMPANY</option>
+            <option value="designation">DESIGNATION</option>
+        </select>
+    </div>
+</div>
+
+
 
 <!-- SIDE BAR starts  -->
 
@@ -127,9 +139,9 @@
                 <th md-column md-numeric md-order-by="carbs.value"><span>Agent</span></th>
                 <th md-column md-numeric md-order-by="calories.value" md-desc><span>City</span></th>
                 <th md-column md-numeric md-order-by="protein.value"><span>Email</span></th>
-                <th md-column md-numeric md-order-by="sodium.value" hide-gt-xs show-gt-md><span>Sodium (mg)</span></th>
+                <!-- <th md-column md-numeric md-order-by="sodium.value" hide-gt-xs show-gt-md><span>Sodium (mg)</span></th>
                 <th md-column md-numeric md-order-by="calcium.value" hide-gt-xs show-gt-lg><span>Calcium (%)</span></th>
-                <th md-column md-numeric md-order-by="iron.value" hide-gt-xs show-gt-lg><span>Iron (%)</span></th>
+                <th md-column md-numeric md-order-by="iron.value" hide-gt-xs show-gt-lg><span>Iron (%)</span></th> -->
                 <th md-column md-order-by="comment">
                   <md-icon>comments</md-icon>
                   <span>Comments</span>
@@ -163,24 +175,27 @@
                  <td md-cell>{{property.agentName}}</td>
                  <td md-cell>{{property.city}}</td>              
                  <td md-cell>{{property.email_address}}</td>
-                 <td md-cell hide-gt-xs show-gt-md>{{property.listprice}}</td>
-                 <td md-cell hide-gt-xs show-gt-lg>{{property.listPrice}}%</td>
+<!--                  <td md-cell hide-gt-xs show-gt-md>{{property.listprice}}</td>
+                 <td md-cell hide-gt-xs show-gt-lg>{{property.listPrice}}%</td> -->
                                 
-                <td md-cell hide-gt-xs show-gt-md>{{dessert.sodium.value}}</td>
+               <!--  <td md-cell hide-gt-xs show-gt-md>{{dessert.sodium.value}}</td>
                 <td md-cell hide-gt-xs show-gt-lg>{{dessert.calcium.value}}%</td>
-                <td md-cell hide-gt-xs show-gt-lg>{{dessert.iron.value}}%</td>
+                <td md-cell hide-gt-xs show-gt-lg>{{dessert.iron.value}}%</td> -->
                 
                 <td md-cell aria-label="comment" ng-click="editComment($event, property)" ng-class="{'md-placeholder': !property.comments}">
                   {{property.comments || 'Add a comment' | limitTo: 15  }}
                 </td>
 
-       <td md-cell>
-        <i ng-click="toggleLeft()" class="material-icons">chevron_left</i>
-       </td>   
+         <td md-cell>
+          <i ng-click="toggleLeft()" class="material-icons">chevron_left</i>
+         </td>   
 
-       <td md-cell>
-        <i ng-click="toggleRight()" class="material-icons">chevron_right</i>
-       </td>   
+         <td md-cell>
+          <i ng-click="toggleRight()" class="material-icons">chevron_right</i>
+         </td>  
+
+
+
               </tr>
             </tbody>
           </table>
