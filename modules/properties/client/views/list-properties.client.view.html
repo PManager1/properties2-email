@@ -214,7 +214,6 @@
 
     </md-content> -->
     <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
-      {{lists}}  {{obj}}
       <md-toolbar class="md-theme-light">
         <h1 class="md-toolbar-tools">Sidenav Right {{lists}}  {{obj.phone_no}} </h1>
       </md-toolbar>
@@ -222,22 +221,22 @@
         <form>
           <md-input-container>
             <label for="testInput">Commentside</label>
-            <input type="text" id="testInput" {{desserts}} md-autofocus="" value="{{obj.comments}} ">
+            <input type="text" id="testInput" md-autofocus="" value="{{obj.comments}}">
           </md-input-container>
 
           <md-input-container>
             <label for="testInput">Phone no</label>
-            <input type="text" id="testInput" {{property.address}} value="{{desserts.count}}" >
+            <input type="text" id="testInput" value="{{obj.phone_no}}" >
           </md-input-container>
 
           <md-input-container>
             <label for="testInput">Email</label>
-            <input type="text" id="testInput" ng-model="data" value="something@email.com">
+            <input type="text" id="testInput"  value={{obj.email_address}}>
           </md-input-container>
 
           <md-input-container>
             <label for="testInput">Name</label>
-            <input type="text" id="testInput" ng-model="data" value="Junior RE">
+            <input type="text" id="testInput"  value={{obj.agentName}}>
           </md-input-container>
 
 

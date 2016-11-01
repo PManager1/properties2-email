@@ -281,10 +281,10 @@ $scope.rowSelected;
    var obj = {}
   // obj.coments = ; 
   obj.comments = someData[0].comments; 
-
   obj.phone_no = someData[0].phone_no; 
-
-  obj.agentName = someData[0].agentName
+  obj.agentName = someData[0].agentName; 
+  obj.email_address = someData[0].email_address;  
+  obj._id = someData[0]._id;   
   
   console.log(  ' 289 - --- obj=  ' , obj); 
 
