@@ -78,16 +78,19 @@
           </div>
         </md-toolbar>
 <!-- upto here -->
-
-
 <section>
 
 
 
 <div class="row">
+    
     <div class="col-xs-12 col-sm-6 col-md-8">
-        <input ng-model="query[queryBy]" />
+        search :
+        
+        <p><input type="text" ng-model="searchquery"></p>
+
     </div>
+
     <div class="col-xs-6 col-md-4">
         <select ng-model="queryBy">
             <option value="$">$</option>
@@ -149,8 +152,12 @@
               </tr>
             </thead>
             <tbody md-body>
-              <tr md-row md-select="property" md-on-select="logItem" md-auto-select="options.autoSelect" ng-disabled="dessert.calories.value > 400" ng-repeat="property in properties | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
-                
+              <tr md-row md-select="property" md-on-select="logItem" md-auto-select="options.autoSelect" ng-disabled="dessert.calories.value > 400" ng-repeat="property in properties | filter:searchquery | limitTo: query.limit : (query.page -1) * query.limit">
+
+
+ <!-- <tr md-row md-select="property" md-on-select="logItem" md-auto-select="options.autoSelect" ng-disabled="dessert.calories.value > 400" ng-repeat="property in properties | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+
+         -->         
                 <td md-cell>{{property.address}} {{property.city}}</td>
       
 
