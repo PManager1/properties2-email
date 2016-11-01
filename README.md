@@ -8,6 +8,9 @@ step 2
  docker-compose up
 
 
+<!-- TO generate user password -->
+MONGO_SEED=true gulp
+
 
 
  

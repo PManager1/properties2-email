@@ -6,7 +6,6 @@
 
 
 
-
 // SIDE BAR stuff BEGINS 
   .controller('SideNavCtrl', function ($scope, $rootScope, $timeout, $mdSidenav, $log, shareDataService, Data) {
     $scope.toggleLeft = buildDelayedToggler('left');
