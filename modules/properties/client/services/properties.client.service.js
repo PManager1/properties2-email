@@ -4,17 +4,22 @@
 
     angular
         .module('properties')
-        .service('shareDataService', function() {
-            console.log('Hi from shareDataService');
+        .service('shareDataService', ['_', function(_) {
+            console.log('Hi from 8- shareDataService _=',_);
             
-            var myList = [];
+            var myList;
 
             var addList = function(newObj) {
-                myList.push(newObj);
+                // myList.push(newObj);
+                myList = newObj; 
+                // myList = _.flatten(myList); 
                 console.log('Added properteis inside the myList ', myList);
             }
 
             var getList = function() {
+                // var my = _.flatten(myList);
+                // console.log( ' getList  my = ', my); 
+
                 return myList;
             }
 
@@ -33,13 +38,23 @@
                 popList: popList,
                 lastonList: lastonList
             };
-        })
+        }])
 
 
 
       .factory('_', ['$window', function($window) {
         return $window._; // assumes underscore has already been loaded on the page
       }])
+
+
+
+      .factory("Data", ['_', function(_) {
+        console.log(  ' inside Data  value of _  =', _); 
+
+          return { FirstName: '' };
+
+      }])
+
 
 
 
@@ -56,4 +71,11 @@
             }
         });
     }
+
+
+
+
+
+
+
 }());

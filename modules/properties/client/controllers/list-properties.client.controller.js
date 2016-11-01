@@ -8,11 +8,15 @@
 
 
 // SIDE BAR stuff BEGINS 
-  .controller('SideNavCtrl', function ($scope, $rootScope, $timeout, $mdSidenav, $log, shareDataService) {
+  .controller('SideNavCtrl', function ($scope, $rootScope, $timeout, $mdSidenav, $log, shareDataService, Data) {
     $scope.toggleLeft = buildDelayedToggler('left');
     $scope.toggleRight = buildToggler('right'); 
 
 $scope.lists = shareDataService.getList();
+
+
+  $scope.Data = Data;
+
 
     $scope.isOpenRight = function(){
       return $mdSidenav('right').isOpen();
@@ -106,9 +110,9 @@ $scope.lists = shareDataService.getList();
 console.log( ' inside the list-properties-client-controller');                                                                       
 
 
-  PropertiesListController.$inject = ['$scope','$rootScope', '$q', '$location', '$http','$filter','PropertiesService', 'shareDataService', '$mdToast','moment','$mdEditDialog','$timeout', '$mdSidenav', '$log'];
+  PropertiesListController.$inject = ['$scope','$rootScope', '$q', '$location', '$http','$filter','PropertiesService', 'shareDataService', 'Data', '$mdToast','moment','$mdEditDialog','$timeout', '$mdSidenav', '$log'];
 
-  function PropertiesListController($scope, $rootScope, $q, $location, $http, $filter, PropertiesService, shareDataService, $mdToast, moment,  $mdEditDialog, $timeout, $mdSidenav, $log) {
+  function PropertiesListController($scope, $rootScope, $q, $location, $http, $filter, PropertiesService, shareDataService, Data, $mdToast, moment,  $mdEditDialog, $timeout, $mdSidenav, $log) {
 
 
   console.log( ' loading PropertiesListController  ========== for mdToast =>', $mdToast); 
@@ -268,8 +272,30 @@ $scope.rowSelected;
     $rootScope.propertiesSelected = $scope.selected;
     console.log ( ' $rootScope.propertiesSelected  = ', $rootScope.propertiesSelected); 
 
-  $scope.someData = $rootScope.propertiesSelected;  
-  shareDataService.addList($scope.someData);
+  var someData = $rootScope.propertiesSelected;  
+ 
+  console.log ( '276 -  someData = ', someData); 
+
+  window.someData = someData; 
+
+   var obj = {}
+  // obj.coments = ; 
+  obj.comments = someData[0].comments; 
+
+  obj.phone_no = someData[0].phone_no; 
+
+  obj.agentName = someData[0].agentName
+  
+  console.log(  ' 289 - --- obj=  ' , obj); 
+
+$scope.obj = obj; 
+
+ 
+  shareDataService.addList(obj);
+
+ 
+// $scope.Data = $rootScope.propertiesSelected; 
+  
 
     // shareDataService.popList(); 
     // shareDataService.addList($rootScope.propertiesSelected);
