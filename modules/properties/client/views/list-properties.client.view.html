@@ -66,15 +66,13 @@
                  </md-button>
 
 
-  <!--      <td md-cell>
-        <i ng-click="toggleLeft()" class="material-icons">chevron_left</i>
-       </td>   
+     <!--            <md-button class="md-icon-button" ng-click="toggleLeft()">
+                          <i class="material-icons" ng-click="toggleLeft()" >chevron_left</i>
+                 </md-button>
 
-       <td md-cell>
-        <i ng-click="toggleRight()" class="material-icons">chevron_right</i>
-       </td>  -->
-
-
+                <md-button class="md-icon-button" ng-click="toggleRight()">
+                          <i class="material-icons" ng-click="toggleRight()">chevron_right</i>
+                 </md-button> -->
 
 
           </div>
@@ -215,7 +213,14 @@
     </md-content> -->
     <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
       <md-toolbar class="md-theme-light">
-        <h1 class="md-toolbar-tools">Sidenav Right {{lists}}  {{obj.phone_no}} </h1>
+        <h1 class="md-toolbar-tools">Sidenav Right   
+            <md-button class="md-icon-button" ng-click="refreshStuff()">
+              <md-icon>refresh</md-icon>
+            </md-button> 
+        </h1>
+
+
+
       </md-toolbar>
       <md-content ng-controller="RightCtrl" layout-padding="">
         <form>
@@ -245,7 +250,13 @@
 <!-- more form elements ends  -->
         </form>
         <md-button ng-click="close()" class="md-primary">
-          Close Sidenav Right
+          Close Sidenav Right   
+
+           <!--  <md-button class="md-icon-button" ng-click="refreshStuff()">
+              <md-icon>refresh</md-icon>
+            </md-button> -->
+
+
         </md-button>
       </md-content>
 

@@ -278,8 +278,7 @@ $scope.rowSelected;
 
   window.someData = someData; 
 
-   var obj = {}
-  // obj.coments = ; 
+  var obj = {}
   obj.comments = someData[0].comments; 
   obj.phone_no = someData[0].phone_no; 
   obj.agentName = someData[0].agentName; 
