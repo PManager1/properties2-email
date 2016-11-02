@@ -12,7 +12,7 @@ step 2
 MONGO_SEED=true gulp
 
 admin
-4x9F7tcaAChWGzxCJFGgFJD5DtdGbQpw9Ct
+qwtpYksHcQfaRUHMJ6cHbjxqjTBnbGa3FMm
 
  
 

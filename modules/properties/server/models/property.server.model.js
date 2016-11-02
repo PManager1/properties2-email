@@ -111,17 +111,11 @@ var PropertySchema = new Schema({
     default: 'default',
     required: 'Please fill no_of_emails_open',
     trim: true
-  }, 
+  },   
   last_date_call_was_made: {
     type: String,
     default: 'default',
-    required: 'Please fill no_of_emails_open',
-    trim: true
-  },  
-  last_date_call_was_made: {
-    type: String,
-    default: 'Bi_weekly',
-    required: 'Please fill last_date_call_was_made',
+    required: false,
     trim: true
   },  
   call_priority: {
