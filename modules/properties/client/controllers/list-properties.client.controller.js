@@ -299,6 +299,22 @@ $scope.obj = obj;
     // shareDataService.addList($rootScope.propertiesSelected);
   };
 
+
+
+  $scope.refreshStuff = function (obj) {
+    console.log ( ' refresh Stuff clicked', obj); 
+
+    // NOW UPDATE IN BACKEND 
+
+    PropertiesService.update({ propertyId: obj._id }, obj);
+    console.log( ' SideNav Updated!! ')
+
+  }
+
+
+
+
+
   
   $scope.logOrder = function (order) {
     console.log('order: ', order);

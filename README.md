@@ -11,7 +11,8 @@ step 2
 <!-- TO generate user password -->
 MONGO_SEED=true gulp
 
-
+admin
+4x9F7tcaAChWGzxCJFGgFJD5DtdGbQpw9Ct
 
  
 
