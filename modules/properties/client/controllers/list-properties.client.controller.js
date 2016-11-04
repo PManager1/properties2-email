@@ -254,8 +254,9 @@ $scope.rowSelected;
     $scope.limitOptions = $scope.limitOptions ? undefined : [5, 10, 15];
   };
 
+
   $scope.getTypes = function () {
-    return ['Bi_weekly', 'Red-Priority', 'Orange', 'Grey'];
+    return ['Bi_weekly','Left-VM','Red-Priority', 'Orange', 'Grey'];
   };
 
 
@@ -308,6 +309,10 @@ $scope.obj = obj;
 
     // NOW UPDATE IN BACKEND 
 
+    console.log('312 - -  updated obj = ', obj); 
+
+    // PropertiesService.update({ propertyId: currentProperty._id }, currentProperty);
+
     PropertiesService.update({ propertyId: obj._id }, obj);
     console.log( ' SideNav Updated!! ')
 
@@ -338,7 +343,7 @@ $scope.selectChangedPriority = function(type) {
 
     var arrSelectedProperties = $rootScope.propertiesSelected;
 
-    console.log('169 - arrSelectedProperties  = ', arrSelectedProperties);
+    console.log('169 - arrSelectedProperties  169 = ', arrSelectedProperties);
 
     window.arrSelectedProperties = arrSelectedProperties; 
 
@@ -347,6 +352,7 @@ $scope.selectChangedPriority = function(type) {
     // console.log(' values = ', value);  [arrSelectedProperties.length-1]
     var currentProperty = arrSelectedProperties[arrSelectedProperties.length-1];
 
+    console.log(  '  351 -  currentProperty ', currentProperty); 
     currentProperty.call_priority = type;
 
 
@@ -362,8 +368,6 @@ $scope.selectChangedPriority = function(type) {
     PropertiesService.update({ propertyId: currentProperty._id }, currentProperty);
 
     console.log(' property update sent backend');
-    // });
-    // });
 }
 
 

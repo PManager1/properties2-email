@@ -33,7 +33,7 @@
 
         <div class="form-group" show-errors>
           <label class="control-label" for="name">Contact name</label>
-          <input name="name" type="text" ng-model="vm.property.contact_name" id="name" class="form-control" placeholder="Name" required>
+          <input name="name" type="text" ng-model="vm.property.agent_name" id="name" class="form-control" placeholder="Name" required>
           <div ng-messages="vm.form.propertyForm.name.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Property contact_name is required.</p>
           </div>
@@ -92,7 +92,7 @@
 
         <div class="form-group" show-errors>
           <label class="control-label" for="name">email</label>
-          <input name="name" type="text" ng-model="vm.property.email" id="name" class="form-control" placeholder="Button left right - if you click it it will send email and remain green.  If error - remain blue" required>
+          <input name="name" type="text" ng-model="vm.property.email_address" id="name" class="form-control" placeholder="Button left right - if you click it it will send email and remain green.  If error - remain blue" required>
           <div ng-messages="vm.form.propertyForm.name.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Property email is required.</p>
           </div>

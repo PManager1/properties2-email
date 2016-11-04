@@ -28,13 +28,13 @@ var PropertySchema = new Schema({
     required: 'Please fill city ',
     trim: true
   },
-  phone: {
+  phone_no: {
     type: String,
     default: 'default',
     required: 'Please fill phone_no',
     trim: true
   },
-  email: {
+  email_address: {
     type: String,
     default: 'default',
     required: 'Please fill email_address ',
@@ -52,12 +52,18 @@ var PropertySchema = new Schema({
     required: 'Please fill offerPrice ',
     trim: true
   }, 
-  contact_name: {
+  agent_name: {
     type: String,
     default: 'default',
-    required: 'Please fill agentName name',
+    required: 'Please fillin comments',
     trim: true
-  }, 
+  },   
+  comments: {
+    type: String,
+    default: 'default',
+    required: 'Please fillin comments',
+    trim: true
+  },   
   dateAdded: {
     type: String,
     default: 'default',
