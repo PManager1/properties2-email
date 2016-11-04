@@ -14,7 +14,7 @@
 $scope.lists = shareDataService.getList();
 
 
-  $scope.Data = Data;
+$scope.Data = Data;
 
 
     $scope.isOpenRight = function(){
@@ -117,6 +117,7 @@ console.log( ' inside the list-properties-client-controller');
   console.log( ' loading PropertiesListController  ========== for mdToast =>', $mdToast); 
 
     var vm = this;
+    console.log( '120 -- this  VM = ', vm); 
 
     vm.properties = PropertiesService.query();
     $scope.properties = vm.properties; 
@@ -129,7 +130,7 @@ console.log( ' inside the list-properties-client-controller');
   $rootScope.propertiesSelected = []; 
 
 
-  $scope.limitOptions = [5, 10, 15];
+  $scope.limitOptions = [5, 10, 15, 30, 50, 80];
   
   $scope.options = {
     rowSelection: true,
