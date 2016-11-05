@@ -66,7 +66,6 @@
                           <i class="material-icons">done</i>
                  </md-button>
 
-
           </div>
         </md-toolbar>
 <!-- upto here -->
@@ -89,6 +88,30 @@
                             </div>
                         </div>
   </div>
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+
+      <div class="col-xs-3 col-sm-3 col-md-3">
+        <md-switch ng-model="data.cb1" aria-label="Switch 1">
+            Just Today : {{ data.cb1 }}
+        </md-switch>
+      </div>
+      <div class="col-xs-3 col-sm-3 col-md-3">
+        <md-switch ng-model="data.cb1" aria-label="Switch 1">
+            VM left: {{ data.cb1 }}
+        </md-switch>
+      </div>
+      
+      <div class="col-xs-3 col-sm-3 col-md-3">      
+        <md-switch ng-model="data.cb1" aria-label="Switch 1">
+            Closing soon : {{ data.cb1 }}
+        </md-switch>
+    </div>
+    </div>
 </div>
 
 
@@ -132,15 +155,8 @@
                 <th md-column md-order-by="type"><span>Status</span></th>                
                 <th md-column md-order-by="type"><span>Priority</span></th>
                 <th md-column md-numeric md-order-by="carbs.value"><span>Agent</span></th>
-               <!--  <th md-column md-numeric md-order-by="calories.value" md-desc><span>City</span></th> -->
-               <!--  <th md-column md-numeric md-order-by="calories.value" md-desc><span>City</span></th> -->               
                 <th md-column md-numeric md-order-by="protein.value"><span>Email</span></th>
-
               <th md-column md-numeric md-order-by="calories.value" md-desc><span>Last Call</span></th> 
-
-                <!-- <th md-column md-numeric md-order-by="sodium.value" hide-gt-xs show-gt-md><span>Sodium (mg)</span></th>
-                <th md-column md-numeric md-order-by="calcium.value" hide-gt-xs show-gt-lg><span>Calcium (%)</span></th>
-                <th md-column md-numeric md-order-by="iron.value" hide-gt-xs show-gt-lg><span>Iron (%)</span></th> -->
                 <th md-column md-order-by="comment">
                   <md-icon>comments</md-icon>
                   <span>Comments</span>
@@ -148,14 +164,21 @@
               </tr>
             </thead>
             <tbody md-body>
-              <tr md-row md-select="property" md-on-select="logItem" md-auto-select="options.autoSelect" ng-disabled="dessert.calories.value > 400" ng-repeat="property in properties | filter:searchquery | limitTo: query.limit : (query.page -1) * query.limit">
+              
+
+              <tr md-row md-select="property" md-on-select="logItem" md-auto-select="options.autoSelect" ng-disabled="dessert.calories.value > 400" ng-hide="property.last_date_call_was_made == currentProperty.Today" ng-repeat="property in properties | filter:searchquery | limitTo: query.limit : (query.page -1) * query.limit">
+
+
+ 
 
        
+
+
             <td md-cell> {{property.address}} {{property.city}} </td>
 
             
             <td md-cell   ng-if="property.cell_phone == '-'"   >   <a href="tel:{{property.phone_no}}"> {{property.phone_no}}</a> </td>
-            
+
             <td md-cell   ng-if="property.cell_phone != '-'"   >   <a href="tel:{{property.cell_phone}}"> {{property.cell_phone}}</a> </td>
 
 
@@ -236,13 +259,12 @@
         <h1 class="md-toolbar-tools">Sidenav Right  |  
         </h1>
 
-
+      {{obj}}
 
       </md-toolbar>
       <md-content ng-controller="RightCtrl" layout-padding="">
         <form>
 
-          {{obj}}
           <md-input-container>
             <label for="testInput">Commentside </label>
             <input type="text" id="testInput" md-autofocus="" ng-model="obj.comments" value="{{obj.comments | limitTo: 2}}">

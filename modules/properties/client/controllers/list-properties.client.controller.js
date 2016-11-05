@@ -119,6 +119,12 @@ console.log( ' inside the list-properties-client-controller');
     var vm = this;
     console.log( '120 -- this  VM = ', vm); 
 
+
+  // var nowMoment = moment();
+  // vm.Today = nowMoment.format('YYYY-M-D');
+
+
+
     vm.properties = PropertiesService.query();
     $scope.properties = vm.properties; 
 
@@ -280,7 +286,7 @@ $scope.rowSelected;
   window.someData = someData; 
 
   var obj = someData[0]; 
-
+    
   // obj.comments = someData[0].comments; 
   // obj.phone_no = someData[0].phone_no; 
   // obj.agentName = someData[0].agentName; 
@@ -363,7 +369,6 @@ $scope.selectChangedPriority = function(type) {
 
     currentProperty.last_date_call_was_made = nowMoment.format('YYYY-M-D');
     console.log(' BEFORE property update sent backend - >  currentProperty.call_priority', currentProperty);
-
 
     PropertiesService.update({ propertyId: currentProperty._id }, currentProperty);
 
