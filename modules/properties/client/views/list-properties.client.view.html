@@ -83,24 +83,25 @@
 
 
 
-<div class="row">
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 pull-md-left pull-sm-left pull-xs-left">
-        search :
-        
-        <input class="col-xs-10 col-sm-10 col-md-10" type="text" ng-model="searchquery">
 
-    </div>
+<div class="container">
+  <div class="row">
+    <h2>Search</h2>
+           <div id="custom-search-input">
+                            <div class="input-group col-xs-10 col-sm-10 col-md-10">
+                                <input type="text" class="search-query form-control" placeholder="Search" ng-model="searchquery"/>
 
-    <div class="col-xs-6 col-md-4">
-        <select ng-model="queryBy">
-            <option value="$">$</option>
-            <option value="name">NAME</option>
-            <option value="company">COMPANY</option>
-            <option value="designation">DESIGNATION</option>
-        </select>
-    </div>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="button">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+  </div>
 </div>
+
+
 
 
 

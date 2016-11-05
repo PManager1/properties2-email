@@ -55,13 +55,13 @@ var PropertySchema = new Schema({
   agent_name: {
     type: String,
     default: 'default',
-    required: 'Please fillin comments',
+    required: 'Please fillin comments',     
     trim: true
   },   
   comments: {
     type: String,
     default: 'default',
-    required: 'Please fillin comments',
+    required: false,
     trim: true
   },   
   dateAdded: {

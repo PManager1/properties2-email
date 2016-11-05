@@ -256,7 +256,7 @@ $scope.rowSelected;
 
 
   $scope.getTypes = function () {
-    return ['Bi_weekly','Left-VM','Red-Priority', 'Orange', 'Grey'];
+    return ['Bi_weekly','Bi_wee_Polite','Red-Priority','wrong-no','Left-VM', 'Orange', 'Grey'];
   };
 
 
