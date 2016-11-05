@@ -151,11 +151,13 @@
               <tr md-row md-select="property" md-on-select="logItem" md-auto-select="options.autoSelect" ng-disabled="dessert.calories.value > 400" ng-repeat="property in properties | filter:searchquery | limitTo: query.limit : (query.page -1) * query.limit">
 
        
-       
-              
-              <td md-cell> {{property.address}} {{property.city}} </td>
+            <td md-cell> {{property.address}} {{property.city}} </td>
 
-            <td md-cell>   <a href="tel:{{property.phone_no}}"> {{property.phone_no}}</a> </td>
+            
+            <td md-cell   ng-if="property.cell_phone == '-'"   >   <a href="tel:{{property.phone_no}}"> {{property.phone_no}}</a> </td>
+            
+            <td md-cell   ng-if="property.cell_phone != '-'"   >   <a href="tel:{{property.cell_phone}}"> {{property.cell_phone}}</a> </td>
+
 
             <td md-cell> 
                 <md-button class="md-icon-button" ng-click="justCalled()">
