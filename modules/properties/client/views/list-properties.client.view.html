@@ -67,15 +67,6 @@
                  </md-button>
 
 
-     <!--            <md-button class="md-icon-button" ng-click="toggleLeft()">
-                          <i class="material-icons" ng-click="toggleLeft()" >chevron_left</i>
-                 </md-button>
-
-                <md-button class="md-icon-button" ng-click="toggleRight()">
-                          <i class="material-icons" ng-click="toggleRight()">chevron_right</i>
-                 </md-button> -->
-
-
           </div>
         </md-toolbar>
 <!-- upto here -->
@@ -141,8 +132,12 @@
                 <th md-column md-order-by="type"><span>Status</span></th>                
                 <th md-column md-order-by="type"><span>Priority</span></th>
                 <th md-column md-numeric md-order-by="carbs.value"><span>Agent</span></th>
-                <th md-column md-numeric md-order-by="calories.value" md-desc><span>City</span></th>
+               <!--  <th md-column md-numeric md-order-by="calories.value" md-desc><span>City</span></th> -->
+               <!--  <th md-column md-numeric md-order-by="calories.value" md-desc><span>City</span></th> -->               
                 <th md-column md-numeric md-order-by="protein.value"><span>Email</span></th>
+
+              <th md-column md-numeric md-order-by="calories.value" md-desc><span>Last Call</span></th> 
+
                 <!-- <th md-column md-numeric md-order-by="sodium.value" hide-gt-xs show-gt-md><span>Sodium (mg)</span></th>
                 <th md-column md-numeric md-order-by="calcium.value" hide-gt-xs show-gt-lg><span>Calcium (%)</span></th>
                 <th md-column md-numeric md-order-by="iron.value" hide-gt-xs show-gt-lg><span>Iron (%)</span></th> -->
@@ -155,12 +150,10 @@
             <tbody md-body>
               <tr md-row md-select="property" md-on-select="logItem" md-auto-select="options.autoSelect" ng-disabled="dessert.calories.value > 400" ng-repeat="property in properties | filter:searchquery | limitTo: query.limit : (query.page -1) * query.limit">
 
-
- <!-- <tr md-row md-select="property" md-on-select="logItem" md-auto-select="options.autoSelect" ng-disabled="dessert.calories.value > 400" ng-repeat="property in properties | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
-
-         -->         
-                <td md-cell> {{property.address}} {{property.city}} </td>
-      
+       
+       
+              
+              <td md-cell> {{property.address}} {{property.city}} </td>
 
             <td md-cell>   <a href="tel:{{property.phone_no}}"> {{property.phone_no}}</a> </td>
 
@@ -181,8 +174,11 @@
           
                  <!-- <td md-cell>{{property.phone_no}}</td> -->
                  <td md-cell>{{property.agent_name}}</td>
-                 <td md-cell>{{property.city}}</td>              
-                 <td md-cell>{{property.email_address}}</td>
+                 <!-- <td md-cell>{{property.city}}</td>  -->
+
+                 <td md-cell>{{property.city}}</td> 
+
+                 <td md-cell>{{property.last_date_call_was_made}}</td>
 <!--                  <td md-cell hide-gt-xs show-gt-md>{{property.listprice}}</td>
                  <td md-cell hide-gt-xs show-gt-lg>{{property.listPrice}}%</td> -->
                                 

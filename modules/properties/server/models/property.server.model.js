@@ -34,6 +34,12 @@ var PropertySchema = new Schema({
     required: 'Please fill phone_no',
     trim: true
   },
+  cell_phone_no: {
+    type: String,
+    default: 'default',
+    required: 'Please fill phone_no',
+    trim: true
+  },  
   email_address: {
     type: String,
     default: 'default',
