@@ -120,10 +120,51 @@ console.log( ' inside the list-properties-client-controller');
     console.log( '120 -- this  VM = ', vm); 
 
 
-  // var nowMoment = moment();
-  // vm.Today = nowMoment.format('YYYY-M-D');
 
 
+
+$scope.hideProperty = function (property) {
+  //true = show ,  false = hide     // https://goo.gl/0LgQ70
+  // console.log( '140 -----  property = ', property); 
+  console.log ( '129 - property.address = ', property.address);
+  console.log ( '130 - property.last_date_call_was_made = ', property.last_date_call_was_made); 
+
+  var nowMoment = moment();
+  var todayDate = nowMoment.format('YYYY-M-D');
+
+  console.log( ' todayDate = ', todayDate); 
+ 
+
+if ( property.last_date_call_was_made == todayDate)  {
+  console.log ( '138 - inside the iff statement')
+  return true; 
+}
+else { 
+  console.log ( '143 - inside the ELSE statement')  
+    return false
+}
+
+  // console.log( ' --------- diff cd -------',  c.diff(d, 'days')); 
+  console.log( ' --------- RAW diff cd -------',  (c-d)); 
+  return true; 
+}
+
+
+
+
+
+//$scope.diff = 14; 
+
+// ng-if  today - lastCall_made >14
+
+  // var dateDiff = moment().a.diff(b, 'days') 
+
+// var a = moment([2007, 0, 29]);
+// var b = moment([2007, 0, 28]);
+// a.diff(b, 'days')
+
+
+// console.log( ' date diff $scope.dateDiff = ', dateDiff); 
 
     vm.properties = PropertiesService.query();
     $scope.properties = vm.properties; 
@@ -151,7 +192,7 @@ console.log( ' inside the list-properties-client-controller');
   
   $scope.query = {
     order: 'address',
-    limit: 5,
+    limit: 30,
     page: 1
   };
 
@@ -274,6 +315,10 @@ $scope.rowSelected;
     }, 2000);
   }
   
+
+
+
+
 
   $scope.logItem = function (item) {
     $rootScope.propertiesSelected = $scope.selected;

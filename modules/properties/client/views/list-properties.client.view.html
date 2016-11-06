@@ -13,18 +13,6 @@
 
     <md-content laout="column" flex ng-controller="PropertiesListController">
       
-<!--       <md-card>
-        <div layout="row" layout-wrap class="checkboxes">
-          <md-checkbox ng-model="options.rowSelection">Row Selection</md-checkbox>
-          <md-checkbox ng-model="options.multiSelect">Multiple Selection</md-checkbox>
-          <md-checkbox ng-model="options.autoSelect">Auto Selection</md-checkbox>
-          <md-checkbox ng-model="options.decapitate">Decapitate</md-checkbox>
-          <md-checkbox ng-model="options.largeEditDialog">Lard Edit Dialogs</md-checkbox>
-          <md-checkbox ng-model="options.boundaryLinks">Pagination Boundary Links</md-checkbox>
-          <md-checkbox ng-model="options.limitSelect" ng-click="toggleLimitOptions()">Pagination Limit Select</md-checkbox>
-          <md-checkbox ng-model="options.pageSelect">Pagination Page Select</md-checkbox>
-        </div>
-      </md-card> -->
       
       <md-card>
         
@@ -32,6 +20,7 @@
           <div class="md-toolbar-tools">
             <span>make your selection</span>
                  
+
             <div flex>
             </div>
 
@@ -107,7 +96,7 @@
       </div>
       
       <div class="col-xs-3 col-sm-3 col-md-3">      
-        <md-switch ng-model="data.cb3" aria-label="Switch 1">
+        <md-switch ng-model="data.cb" aria-label="Switch 1">
             Closing soon : {{ data.cb1 }}
         </md-switch>
     </div>
@@ -166,16 +155,17 @@
             <tbody md-body>
               
 
-              <tr md-row md-select="property" md-on-select="logItem" md-auto-select="options.autoSelect" ng-disabled="dessert.calories.value > 400" ng-hide="property.last_date_call_was_made == currentProperty.Today" ng-repeat="property in properties | filter:searchquery | limitTo: query.limit : (query.page -1) * query.limit">
+              <!-- ng-show="0" class="ng-hide"  -->
+      <!-- ng-hide="property.last_date_call_was_made == currentProperty.Today" -->
+
+              <tr  ng-hide="hideProperty(property)" md-row md-select="property" md-on-select="logItem" md-auto-select="options.autoSelect" ng-disabled="dessert.calories.value > 400"  ng-repeat="property in properties | filter:searchquery | limitTo: query.limit : (query.page -1) * query.limit">
 
 
- 
 
-       
+
 
 
             <td md-cell> {{property.address}} {{property.city}} </td>
-
             
             <td md-cell   ng-if="property.cell_phone == '-'"   >   <a href="tel:{{property.phone_no}}"> {{property.phone_no}}</a> </td>
 

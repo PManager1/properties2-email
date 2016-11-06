@@ -5,7 +5,7 @@
     angular
         .module('properties')
         .service('shareDataService', ['_', function(_) {
-            console.log('Hi from 8- shareDataService _=',_);
+            // console.log('Hi from 8- shareDataService _=',_);
             
             var myList;
 
@@ -49,7 +49,7 @@
 
 
       .factory("Data", ['_', function(_) {
-        console.log(  ' inside Data  value of _  =', _); 
+        // console.log(  ' inside Data  value of _  =', _); 
 
           return { FirstName: '' };
 
