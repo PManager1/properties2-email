@@ -13,14 +13,13 @@
 
 $scope.lists = shareDataService.getList();
 
-
 $scope.Data = Data;
 
 
     $scope.isOpenRight = function(){
       return $mdSidenav('right').isOpen();
     };
-
+ 
     /**
      * Supplies a function that will continue to operate until the
      * time is up.
@@ -122,35 +121,17 @@ $scope.Data = Data;
 
 
 $scope.hideProperty = function (property) {
-  //true = show ,  false = hide     // https://goo.gl/0LgQ70
-  // console.log( '140 -----  property = ', property); 
-  // console.log ( '129 - property.address = ', property.address);
-  // console.log ( '130 - property.last_date_call_was_made = ', property.last_date_call_was_made); 
-
- // console.log  ( ' 148 -----two_weeks_before_dates', two_weeks_before_dates) ; 
- 
-// if ( property.last_date_call_was_made == todayDate)  {
-
-// _.contains([1, 2, 3], 3);
+  console.log( '124 - initiate  hideProperty fun'); 
 
   var nowMoment = moment();
   var todayDate = nowMoment.format('YYYY-M-D');
 
-// console.log (  '139 - dates_two_weeks_before', dates_two_weeks_before); 
-
-// console.log (  '141- todayDate', todayDate); 
-
 if ( _.contains(dates_two_weeks_before, property.last_date_call_was_made))  {  
-  // console.log ( '138 - IFF inside iff statement')
   return true; 
 }
 else { 
-  // console.log ( '143 - inside the ELSE statement')  
     return false
 }
-
-  // // console.log( ' --------- diff cd -------',  c.diff(d, 'days')); 
-  // console.log( ' --------- RAW diff cd -------',  (c-d)); 
   return false; 
 }
 
@@ -158,18 +139,6 @@ else {
 
 
 
-//$scope.diff = 14; 
-
-// ng-if  today - lastCall_made >14
-
-  // var dateDiff = moment().a.diff(b, 'days') 
-
-// var a = moment([2007, 0, 29]);
-// var b = moment([2007, 0, 28]);
-// a.diff(b, 'days')
-
-
-// console.log( ' date diff $scope.dateDiff = ', dateDiff); 
 
     vm.properties = PropertiesService.query();
     $scope.properties = vm.properties; 
@@ -250,7 +219,7 @@ $scope.rowSelected;
     );
   };
 
-// ***** TOAST *****
+// ***** TOAST end *****
 
 // ************
   
@@ -308,7 +277,7 @@ $scope.rowSelected;
 
 
   $scope.getTypes = function () {
-    return ['Bi_weekly','Bi_wee_Polite','Red-Priority','wrong-no','Left-VM', 'Orange', 'Grey'];
+    return ['Bi_weekly','Bi_wee_Polite','Red-Priority','wrong-no','Left-VM', 'Orange','Closing','Sold','Grey'];
   };
 
 
@@ -326,28 +295,15 @@ $scope.rowSelected;
 
 
   $scope.logItem = function (item) {
+    console.log( '298 - initiate  logItem fun'); 
     $rootScope.propertiesSelected = $scope.selected;
     // console.log ( ' $rootScope.propertiesSelected  = ', $rootScope.propertiesSelected); 
 
   var someData = $rootScope.propertiesSelected;  
- 
-  // console.log ( '276 -  someData = ', someData); 
 
   window.someData = someData; 
-
   var obj = someData[0]; 
-    
-  // obj.comments = someData[0].comments; 
-  // obj.phone_no = someData[0].phone_no; 
-  // obj.agentName = someData[0].agentName; 
-  // obj.email_address = someData[0].email_address;  
-  // obj._id = someData[0]._id;   
-  
-  // console.log(  ' 289 - --- obj=  ' , obj); 
-
-$scope.obj = obj; 
-
- 
+   $scope.obj = obj; 
   shareDataService.addList(obj);
 
  
@@ -395,7 +351,7 @@ $scope.obj = obj;
 
 
 $scope.selectChangedPriority = function(type) {
-    console.log(' 165 - selectChanged triggered   & selected Priority = ', type);
+    console.log(' 397 - selectChangedPriority  triggered   & selected Priority = ', type);
 
     var arrSelectedProperties = $rootScope.propertiesSelected;
 
@@ -408,7 +364,7 @@ $scope.selectChangedPriority = function(type) {
     // console.log(' values = ', value);  [arrSelectedProperties.length-1]
     var currentProperty = arrSelectedProperties[arrSelectedProperties.length-1];
 
-    console.log(  '  351 -  currentProperty ', currentProperty); 
+    console.log(  '  367 -  currentProperty ', currentProperty); 
     currentProperty.call_priority = type;
 
 
