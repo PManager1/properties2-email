@@ -13,7 +13,7 @@
                 // myList.push(newObj);
                 myList = newObj; 
                 // myList = _.flatten(myList); 
-                console.log('Added properteis inside the myList ', myList);
+                // console.log('Added properteis inside the myList ', myList);
             }
 
             var getList = function() {
@@ -45,6 +45,28 @@
       .factory('_', ['$window', function($window) {
         return $window._; // assumes underscore has already been loaded on the page
       }])
+
+
+      .factory('dates_two_weeks_before', ['moment', function(moment) {
+          console.log('52- service calling facotry dates_two_weeks_before');
+
+          // console.log(' calling  $scope.two_weeks_before_dates ');
+          var nowMoment = moment();
+          var todayDate = nowMoment.format('YYYY-M-D');
+
+          var d = moment().subtract(14, 'day').format('YYYY-M-D');
+
+          var datesArr = [];
+
+          for (var i = 0; i < 14; i++) {
+              datesArr.push(moment().subtract(i, 'day').format('YYYY-M-D'));
+              // console.log( '143-- datesArr = ', datesArr); 
+          }
+          // console.log(' todayDate = ', todayDate);
+          // console.log('66 datesArr = ', datesArr);          
+          return datesArr;
+      }])
+
 
 
 

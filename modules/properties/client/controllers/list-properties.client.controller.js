@@ -104,16 +104,10 @@ $scope.Data = Data;
 
 
 
-    .controller('PropertiesListController', PropertiesListController);
-
-console.log( ' inside the list-properties-client-controller');                                                                       
-
-
-  PropertiesListController.$inject = ['$scope','$rootScope', '$q', '$location', '$http','$filter','PropertiesService', 'shareDataService', 'Data', '$mdToast','moment','$mdEditDialog','$timeout', '$mdSidenav', '$log'];
-
-  function PropertiesListController($scope, $rootScope, $q, $location, $http, $filter, PropertiesService, shareDataService, Data, $mdToast, moment,  $mdEditDialog, $timeout, $mdSidenav, $log) {
-
-
+  .controller('PropertiesListController', PropertiesListController);
+  console.log( ' inside the list-properties-client-controller');                                                                       
+  PropertiesListController.$inject = ['$scope','$rootScope', '$q', '$location', '$http','$filter','PropertiesService', 'shareDataService', 'Data', '$mdToast','moment','$mdEditDialog','$timeout', '$mdSidenav', '$log','dates_two_weeks_before'];
+  function PropertiesListController($scope, $rootScope, $q, $location, $http, $filter, PropertiesService, shareDataService, Data, $mdToast, moment,  $mdEditDialog, $timeout, $mdSidenav, $log, dates_two_weeks_before) {
   console.log( ' loading PropertiesListController  ========== for mdToast =>', $mdToast); 
 
     var vm = this;
@@ -121,32 +115,43 @@ console.log( ' inside the list-properties-client-controller');
 
 
 
+// $scope.two_weeks_before_dates = function () {
+
+// };
+
 
 
 $scope.hideProperty = function (property) {
   //true = show ,  false = hide     // https://goo.gl/0LgQ70
   // console.log( '140 -----  property = ', property); 
-  console.log ( '129 - property.address = ', property.address);
-  console.log ( '130 - property.last_date_call_was_made = ', property.last_date_call_was_made); 
+  // console.log ( '129 - property.address = ', property.address);
+  // console.log ( '130 - property.last_date_call_was_made = ', property.last_date_call_was_made); 
+
+ // console.log  ( ' 148 -----two_weeks_before_dates', two_weeks_before_dates) ; 
+ 
+// if ( property.last_date_call_was_made == todayDate)  {
+
+// _.contains([1, 2, 3], 3);
 
   var nowMoment = moment();
   var todayDate = nowMoment.format('YYYY-M-D');
 
-  console.log( ' todayDate = ', todayDate); 
- 
+// console.log (  '139 - dates_two_weeks_before', dates_two_weeks_before); 
 
-if ( property.last_date_call_was_made == todayDate)  {
-  console.log ( '138 - inside the iff statement')
+// console.log (  '141- todayDate', todayDate); 
+
+if ( _.contains(dates_two_weeks_before, property.last_date_call_was_made))  {  
+  // console.log ( '138 - IFF inside iff statement')
   return true; 
 }
 else { 
-  console.log ( '143 - inside the ELSE statement')  
+  // console.log ( '143 - inside the ELSE statement')  
     return false
 }
 
-  // console.log( ' --------- diff cd -------',  c.diff(d, 'days')); 
-  console.log( ' --------- RAW diff cd -------',  (c-d)); 
-  return true; 
+  // // console.log( ' --------- diff cd -------',  c.diff(d, 'days')); 
+  // console.log( ' --------- RAW diff cd -------',  (c-d)); 
+  return false; 
 }
 
 
@@ -322,11 +327,11 @@ $scope.rowSelected;
 
   $scope.logItem = function (item) {
     $rootScope.propertiesSelected = $scope.selected;
-    console.log ( ' $rootScope.propertiesSelected  = ', $rootScope.propertiesSelected); 
+    // console.log ( ' $rootScope.propertiesSelected  = ', $rootScope.propertiesSelected); 
 
   var someData = $rootScope.propertiesSelected;  
  
-  console.log ( '276 -  someData = ', someData); 
+  // console.log ( '276 -  someData = ', someData); 
 
   window.someData = someData; 
 
@@ -338,7 +343,7 @@ $scope.rowSelected;
   // obj.email_address = someData[0].email_address;  
   // obj._id = someData[0]._id;   
   
-  console.log(  ' 289 - --- obj=  ' , obj); 
+  // console.log(  ' 289 - --- obj=  ' , obj); 
 
 $scope.obj = obj; 
 
@@ -456,29 +461,29 @@ $scope.selectChangedPriority = function(type) {
 
 
 $scope.justCalled = function() {
-    console.log(' inside the  $scope.justCalled');
+    // console.log(' inside the  $scope.justCalled');
 
     var nowMoment = moment();
     var nowMomentFormatted = nowMoment.format('YYYY-M-D');
 
-    console.log(' nowMomentFormatted =', nowMomentFormatted);
+    // console.log(' nowMomentFormatted =', nowMomentFormatted);
 
     moment().subtract(30, 'days'); // or...
     moment().add(-30, 'days');
 
     var add = moment().add(30, 'days').format('YYYY-M-D');
-    console.log(' add = ', add);
+    // console.log(' add = ', add);
 
     var properties = $rootScope.propertiesSelected;
     var arrSelectedProperties = $rootScope.propertiesSelected;
 
     angular.forEach(arrSelectedProperties, function(value) {
-        console.log(' values = ', value);
+        // console.log(' values = ', value);
         var currentProperty = value;
 
       currentProperty.last_date_call_was_made = nowMoment.format('YYYY-M-D');
       PropertiesService.update({propertyId: currentProperty._id}, currentProperty), function (error) {
-        console.log(' error found =' , error); 
+        // console.log(' error found =' , error); 
       };
     });
 };
