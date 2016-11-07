@@ -368,13 +368,13 @@ $scope.selectChangedPriority = function(type) {
     currentProperty.call_priority = type;
 
 
-    var nowMoment = moment();
-    var nowMomentFormatted = nowMoment.format('YYYY-M-D');
+    // var nowMoment = moment();
+    // var nowMomentFormatted = nowMoment.format('YYYY-M-D');
 
-    console.log('  182- nowMomentFormatted =', nowMomentFormatted);
+    // console.log('  182- nowMomentFormatted =', nowMomentFormatted);
 
-    currentProperty.last_date_call_was_made = nowMoment.format('YYYY-M-D');
-    console.log(' BEFORE property update sent backend - >  currentProperty.call_priority', currentProperty);
+    // currentProperty.last_date_call_was_made = nowMoment.format('YYYY-M-D');
+    // console.log(' BEFORE property update sent backend - >  currentProperty.call_priority', currentProperty);
 
     PropertiesService.update({ propertyId: currentProperty._id }, currentProperty);
 
