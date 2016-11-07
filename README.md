@@ -17,6 +17,111 @@ qwtpYksHcQfaRUHMJ6cHbjxqjTBnbGa3FMm
  
 
 
+
+
+
+
+
+
+
+
+########## MONGO COMMANDS  ########## ########## 
+
+
+
+show dbs
+use __
+show collections
+
+
+show collections
+restaurants
+traffic
+> db.restaurants.find()
+
+db.properties.find()
+
+
+import dataset ( do it on terminal - not on mongo shell )
+
+mongoimport --db mean-dev --collection properties --drop --file ~/Dropbox/Life\ Changing\ Mentoring\ Program/CODE/mean_twnty/properties-testData.json
+
+mongoimport --db mean-dev --collection properties --drop --jsonArray --file ~/Dropbox/Life\ Changing\ Mentoring\ Program/CODE/MEANJS-0.4.2/ltg/properties-testData.json
+
+OR 
+
+mongoimport --db mean-dev --collection properties --drop --jsonArray --file properties-testData.json
+
+mongoimport --db mean-dev --collection properties --drop --jsonArray --file properties-testData.json
+
+
+# it keeps adding no matter what 
+
+
+
+=====
+MONGO EXPORT - 
+
+mongoexport --db test --collection traffic --out traffic.json
+
+//works great
+mongoexport --jsonArray --db mean-dev --collection properties  --out export-mongo.json
+
+
+
+
+
+
+
+======================
+USE UPDATE 
+
+https://goo.gl/2H2Tkk
+
+http://stackoverflow.com/questions/36232547/mongoimport-e11000-duplicate-key-due-to-index
+
+
+
+db.collection.update(properties-testData.json, properties-testData.json, {upsert:true})
+
+
+mongoimport -d mean-dev -c properties --upsert --upsertFields address,phone_no properties-testData.json
+
+
+mongoimport -d mean-dev -c properties --upsert --upsertFields phone_no properties-testData.json
+
+
+
+
+==============
+https://goo.gl/VyaJQy
+Remove duplicate values in mongodb. 
+
+==============
+> db.properties.find()
+find where… 
+db.properties.find( { email_address: "castroe7@bellsouth.net" } )
+
+=====
+No of connections 
+
+db.serverStatus().connections
+=====
+drop database
+
+mongo <dbname> --eval "db.dropDatabase()"
+=====
+drop a collections 
+
+use mean-dev
+db.properties.drop()
+
+======
+
+
+
+########## MONGO COMMANDS  ########## ########## 
+
 [![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
 
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/meanjs/mean?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
