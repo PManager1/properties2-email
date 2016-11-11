@@ -25,10 +25,10 @@ module.exports = {
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
         'public/lib/angular-material/angular-material.min.js',         
         'public/lib/angular-material-data-table/dist/md-data-table.min.js',
-        'public/lib/moment/min/moment.min.js',                         
+        'public/lib/moment/min/moment.min.js',
         'public/lib/angular-moment/angular-moment.min.js',
         // 'public/lib/underscore/underscore-min.map',         
-        'public/lib/underscore/underscore.js'                         
+        'public/lib/underscore/underscore.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
